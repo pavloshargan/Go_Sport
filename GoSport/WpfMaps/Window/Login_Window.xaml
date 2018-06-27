@@ -60,7 +60,7 @@
                 Name="Passbox" Width="310" Margin="0,5"/>
         </StackPanel>
 
-        <Button Name="Submit_Button" Grid.Row="3" Margin="120,22,120,22">Submit</Button>
+        <Button Click="Submit_Button_Click" Name="Submit_Button" Grid.Row="3" Margin="120,22,120,22">Submit</Button>
         <Rectangle Grid.Row="4" Fill="Gray" Margin="40,0,40,0" Height="1"/>
         <Label Grid.Row="4" Foreground="White" Margin="60,44,256,0">Forgot your password?</Label>
         <Label HorizontalContentAlignment="Center" Grid.Row="4" Foreground="White" Margin="255,44,60,0">Sign Up</Label>

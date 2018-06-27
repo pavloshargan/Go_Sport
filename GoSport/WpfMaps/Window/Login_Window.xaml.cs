@@ -30,5 +30,11 @@ namespace WpfMaps
         {
             this.Close();
         }
+     
+        private void Submit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Main_Window main = new Main_Window();
+            main.Show(); this.Close();
+        }
     }
 }
