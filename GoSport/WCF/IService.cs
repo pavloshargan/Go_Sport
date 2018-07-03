@@ -18,16 +18,22 @@ namespace WCF
         [OperationContract]
         [FaultContract(typeof(IncorrectInputData))]
         void ConfirmEmail(string Email, string code);
-
-
         [OperationContract]
-        List<CountryInfo> GetListCountries();
-
+        ICollection<CountryInfo> GetICollectionCountries();
         [OperationContract]
-        List<CityInfo> GetListCities();
+        ICollection<CityInfo> GetICollectionCities();
+        [OperationContract]
+        void CreateActivity(ActivityInfo activity, TokenInfo token);
+    }
+    [DataContract]
+    public class TokenInfo
+    {
+        public virtual UserInfo Session { get; set; }
+        public string Key { get; set; }
+        public DateTime Date { get; set; }
     }
 
-    [DataContract]
+        [DataContract]
     public class IncorrectInputData
     {
         [DataMember]
@@ -35,7 +41,6 @@ namespace WCF
         [DataMember]
         public string Description { get; set; }
     }
-
     [DataContract]
     public class UserInfo
     {
@@ -52,9 +57,6 @@ namespace WCF
         [DataMember]
         public string City { get; set; }
     }
-
-
-
     [DataContract]
     public class CountryInfo
     {
@@ -65,11 +67,7 @@ namespace WCF
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public ICollection<CityInfo> CityInfos { get; set; } 
-
-
-
-
+        public ICollection<CityInfo> CityInfos { get; set; }
     }
     [DataContract]
     public class CityInfo
@@ -80,8 +78,55 @@ namespace WCF
         public CountryInfo CountryInfo { get; set; }
 
     }
+    [DataContract]
+    public class ImageInfo
+    {
+        [DataMember]
+        public byte[] BinaryImage { get; set; }
+        [DataMember]
+        public ActivityInfo Activity { get; set; }
+    }
 
+    [DataContract]
+    public class ActivityInfo
+    {
+        [DataMember]
+        public  RouteInfo Route { get; set; }
+        [DataMember]
+        public  string Type { get; set; }
+        [DataMember]
+        public DateTime Date { get; set; }
+        [DataMember]
+        public ICollection <UserInfo> Users { get; set; }
+        [DataMember]
+        public ICollection<ImageInfo> ActivityImages { get; set; }
+        public ActivityInfo()
+        {
+            Users = new List<UserInfo>();
+            ActivityImages = new List<ImageInfo>();
+        }
+    }
 
+    [DataContract]
+    public class RouteInfo
+    {
+        [DataMember]
+        public CityInfo City { get; set; }
+        [DataMember]
+        public ICollection<PointInfo> Points { get; set; }
+        public RouteInfo()
+        {
+            Points = new List<PointInfo>();
+        }
+    }
+    [DataContract]
+    public class PointInfo
+    {
+        [DataMember]
+        public decimal Longitude { get; set; }
+        [DataMember]
+        public decimal Latitude { get; set; }
+    }
 
 
 }

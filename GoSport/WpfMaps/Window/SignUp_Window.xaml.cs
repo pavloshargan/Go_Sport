@@ -48,7 +48,9 @@ namespace WpfMaps
 
         }
 
-
-
+        private void CountriesBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CitiesBox.ItemsSource = (CountriesBox.SelectedItem as CountryInfo).CityInfos;
+        }
     }
 }

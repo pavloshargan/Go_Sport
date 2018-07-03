@@ -14,16 +14,27 @@ namespace DAL
         public virtual DbSet<ActivityType> ActivityTypes { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
-       // public virtual DbSet<ConfirmEmail> ConfirmEmails { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<UnconfirmedUser> UnconfirmedUsers { get; set; }
-
+        public virtual DbSet<Token> Tokens { get; set; }
         public DataModel()
             : base("name=DataModel")
         {
         }
     }
-
-
+    public class Image
+    {
+        public int Id { get; set; }
+        public byte[] BinaryImage { get; set; }
+        public virtual Activity Activity { get; set; }
+    }
+    public class Token
+    {
+        public int Id { get; set; }
+        public virtual User Session { get; set; }
+        public string Key { get; set; }
+        public DateTime Date { get; set; }
+    }
     public class UnconfirmedUser
     {
         public int Id { get; set; }
@@ -46,7 +57,6 @@ namespace DAL
     }
     public class Country
     {
-
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual ICollection<City> Cities { get; set; }
@@ -57,7 +67,6 @@ namespace DAL
     }
     public class City
     {
-
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual Country Country { get; set; }
@@ -83,10 +92,13 @@ namespace DAL
         public int Id { get; set; }
         public virtual Route Route { get; set; }
         public virtual ActivityType Type { get; set; }
+        public DateTime Date { get; set; }
         public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Image> ActivityImages { get; set; }
         public Activity()
         {
             Users = new List<User>();
+            ActivityImages = new List<Image>();
         }
     }
     public class ActivityType

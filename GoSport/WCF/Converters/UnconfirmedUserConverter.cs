@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DAL;
 namespace WCF
 {
-   public static class UserConverter
+   public static class UnconfirmedUserConverter
     {
        public static UnconfirmedUser ToUnconfirmedUser(UserInfo user, string Password)
         {

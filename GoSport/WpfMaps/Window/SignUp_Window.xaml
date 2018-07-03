@@ -124,6 +124,7 @@
                   HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Path=CountryInfo}"
                   DisplayMemberPath="Name"
+                  SelectionChanged="CountriesBox_SelectionChanged"
                   >
             
                 

@@ -35,7 +35,7 @@ namespace WCF
             }
             try
             {
-                context.UnconfirmedUsers.Add(UserConverter.ToUnconfirmedUser(user, Password));
+                context.UnconfirmedUsers.Add(UnconfirmedUserConverter.ToUnconfirmedUser(user, Password));
                 context.SaveChanges();
 
             }
@@ -65,13 +65,17 @@ namespace WCF
             smtpClient.EnableSsl = true;
             smtpClient.Send(message);
         }
-        public void ConfirmEmail(string Email, string code)
+        public string ConfirmEmail(string Email, string code)
         {
             UnconfirmedUser unconfirmedUser = context.UnconfirmedUsers.FirstOrDefault(x => x.Email == Email);
             if (code == unconfirmedUser.Code)
             {
-                context.Users.Add(UserConverter.ToUser(unconfirmedUser));
+                context.Users.Add(UnconfirmedUserConverter.ToUser(unconfirmedUser));
+                Random random = new Random();
+                string key = random.Next(100000, 999999).ToString();
+                context.Tokens.Add(new Token() { Session = UnconfirmedUserConverter.ToUser(unconfirmedUser), Key = key, Date=DateTime.Now });
                 context.SaveChanges();
+                return key;
             }
             else
             {
@@ -100,5 +104,33 @@ namespace WCF
             }
             return cities;
         }
+        public string SignIn(string Email, string Password)
+        {
+            if(context.Users.Any(x=>x.Email==Email&&x.Password==Password))
+            {
+                User CurrentSession = context.Users.FirstOrDefault(x => x.Email == Email && x.Password == Password);
+                Random random = new Random();
+                string key = random.Next(100000, 999999).ToString();
+                
+                context.Tokens.FirstOrDefault(x => x.Session == CurrentSession).Key = key;
+                context.Tokens.FirstOrDefault(x => x.Session == CurrentSession).Date = DateTime.Now;
+                context.SaveChanges();
+                return key;
+            }
+            else
+            {
+                IncorrectInputData fault = new IncorrectInputData();
+                fault.Message = "Incorrect login or password!";
+                fault.Description = "Enter another login or password";
+                throw new FaultException<IncorrectInputData>(fault);
+            }
+        }
+        public void CreateActivity(ActivityInfo activity, TokenInfo token)
+        {
+            Activity new_activity = new Activity();
+           // new_activity.ActivityImages = activity.ActivityImages;
+
+        }
+       
     }
 }
