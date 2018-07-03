@@ -227,7 +227,7 @@
                 <Image Height="150" VerticalAlignment="Top"  Stretch="UniformToFill"/>
                 <Ellipse Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20 100" Stroke="White">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="D:\Загрузки\desert_sunrise_2-wallpaper-1920x1080.jpg" Stretch="UniformToFill"/>
+                        <ImageBrush  Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <TextBlock Text="John" Foreground="White" FontSize="28" FontFamily="Nirmala UI Semilight" Margin="10 100" VerticalAlignment="Top"/>
@@ -295,7 +295,7 @@
                 <materialDesign:PackIcon Kind="Bell"/>
             </Button>
             <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonClose_Click">
-                <materialDesign:PackIcon Kind="Power"/>
+                <materialDesign:PackIcon Kind="Power" />
             </Button>
         </StackPanel>
 
