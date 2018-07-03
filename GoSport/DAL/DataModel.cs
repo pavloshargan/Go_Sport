@@ -7,17 +7,42 @@ namespace DAL
 
     public class DataModel : DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Activity> Activities { get; set; }
-        public DbSet<Route> Routes { get; set; }
-        public DbSet<Point> Points { get; set; }
-        public DbSet<ActivityType> ActivityTypes { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<Country> Countries { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Activity> Activities { get; set; }
+        public virtual DbSet<Route> Routes { get; set; }
+        public virtual DbSet<Point> Points { get; set; }
+        public virtual DbSet<ActivityType> ActivityTypes { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+       // public virtual DbSet<ConfirmEmail> ConfirmEmails { get; set; }
+        public virtual DbSet<UnconfirmedUser> UnconfirmedUsers { get; set; }
+
         public DataModel()
             : base("name=DataModel")
         {
         }
+    }
+
+
+    public class UnconfirmedUser
+    {
+        public int Id { get; set; }
+
+        public string Login { get; set; }
+
+        public string Firstname { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
+        public string Phone { get; set; }
+
+        public string City { get; set; }
+        public string Code { get; set; }
+
     }
     public class Country
     {
@@ -69,6 +94,12 @@ namespace DAL
         public int Id { get; set; }
         public string Name { get; set; }
     }
+    //public class ConfirmEmail
+    //{
+    //    public int Id { get; set; }
+    //    public string Email { get; set; }
+    //    public string Code { get; set; }
+    //}
     public class User
     {
         public int Id { get; set; }

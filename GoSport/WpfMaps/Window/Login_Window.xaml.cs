@@ -36,5 +36,14 @@ namespace WpfMaps
             Main_Window main = new Main_Window();
             main.Show(); this.Close();
         }
+        
+        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            SignUp_Window window = new SignUp_Window();
+            window.Show();this.Close();
+
+        }
+
+
     }
 }

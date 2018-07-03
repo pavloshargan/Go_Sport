@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DAL
+namespace WpfMaps
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ConfirmEmail_Window.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ConfirmEmail_Window : Window
     {
-        public MainWindow()
+        public ConfirmEmail_Window()
         {
             InitializeComponent();
+        }
+
+        private void ButtonClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

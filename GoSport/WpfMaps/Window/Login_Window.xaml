@@ -20,7 +20,16 @@
             <Setter Property="Fill" Value="Black"></Setter>
 
         </Style>
-
+        
+        <Style x:Key="Label_Font" TargetType="Label" >
+            <Setter Property="Foreground" Value="#FF5722"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Label.FontSize" Value="13"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
     </Window.Resources>
 
@@ -45,16 +54,20 @@
         <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="60,18,60,17" Height="42">
             <materialDesign:PackIcon Kind="Account" Foreground="White" VerticalAlignment="Center" />
             <TextBox
-               
+               materialDesign:HintAssist.Hint="Enter Login"
                 FontSize="17"
                
                 Foreground="White" VerticalContentAlignment="Center"
-                Name="Emailbox" Width="310" Margin="0,5"/>
+                Name="Emailbox" Width="310" Margin="0,5">
+                
+            </TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="2"  Orientation="Horizontal" Margin="60,18,60,17" Height="42">
             <materialDesign:PackIcon Kind="Key" Foreground="White" VerticalAlignment="Center" />
             <PasswordBox
+                materialDesign:HintAssist.Hint="Enter Password"
+                
                 FontSize="17"
                 Foreground="White" VerticalContentAlignment="Center"
                 Name="Passbox" Width="310" Margin="0,5"/>
@@ -62,10 +75,10 @@
 
         <Button Click="Submit_Button_Click" Name="Submit_Button" Grid.Row="3" Margin="120,22,120,22">Submit</Button>
         <Rectangle Grid.Row="4" Fill="Gray" Margin="40,0,40,0" Height="1"/>
-        <Label Grid.Row="4" Foreground="White" Margin="60,44,256,0">Forgot your password?</Label>
-        <Label HorizontalContentAlignment="Center" Grid.Row="4" Foreground="White" Margin="255,44,60,0">Sign Up</Label>
+        <Label Style="{StaticResource Label_Font}" Grid.Row="4" Foreground="White" Margin="60,44,256,21">Forgot your password?</Label>
+        <Label Style="{StaticResource Label_Font}" MouseLeftButtonDown="Label_MouseLeftButtonDown" HorizontalContentAlignment="Center" Grid.Row="4" Foreground="White" Margin="255,44,60,21">Sign Up</Label>
 
-        <Button Name="Button_Close" Click="Button_Close_Click"  Grid.Row="5" Margin="310,30,40,30">Close</Button>
+        <Button  Name="Button_Close" Click="Button_Close_Click"  Grid.Row="5" Margin="310,30,40,30">Close</Button>
         
         
     </Grid>
