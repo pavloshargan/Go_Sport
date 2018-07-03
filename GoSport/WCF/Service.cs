@@ -73,7 +73,7 @@ namespace WCF
                 context.Users.Add(UnconfirmedUserConverter.ToUser(unconfirmedUser));
                 Random random = new Random();
                 string key = random.Next(100000, 999999).ToString();
-                context.Tokens.Add(new Token() { Session = UnconfirmedUserConverter.ToUser(unconfirmedUser), Key = key, Date=DateTime.Now });
+                context.Tokens.Add(new Token() { Session = UnconfirmedUserConverter.ToUser(unconfirmedUser), Key = key, Date = DateTime.Now });
                 context.SaveChanges();
                 return key;
             }
@@ -98,20 +98,20 @@ namespace WCF
         public List<CityInfo> GetListCities()
         {
             List<CityInfo> cities = new List<CityInfo>();
-            foreach(City a in context.Cities)
+            foreach (City a in context.Cities)
             {
-                cities.Add(new CityInfo() { Name = a.Name, CountryInfo = CountryConverter.ToCountryInfo(a.Country)});
+                cities.Add(new CityInfo() { Name = a.Name, CountryInfo = CountryConverter.ToCountryInfo(a.Country) });
             }
             return cities;
         }
         public string SignIn(string Email, string Password)
         {
-            if(context.Users.Any(x=>x.Email==Email&&x.Password==Password))
+            if (context.Users.Any(x => x.Email == Email && x.Password == Password))
             {
                 User CurrentSession = context.Users.FirstOrDefault(x => x.Email == Email && x.Password == Password);
                 Random random = new Random();
                 string key = random.Next(100000, 999999).ToString();
-                
+
                 context.Tokens.FirstOrDefault(x => x.Session == CurrentSession).Key = key;
                 context.Tokens.FirstOrDefault(x => x.Session == CurrentSession).Date = DateTime.Now;
                 context.SaveChanges();
@@ -127,10 +127,42 @@ namespace WCF
         }
         public void CreateActivity(ActivityInfo activity, TokenInfo token)
         {
+            if (activity.Date < DateTime.Now)
+            {
+                IncorrectInputData fault = new IncorrectInputData();
+                fault.Message = "Incorrect Date";
+                fault.Description = "Look on the today's day!";
+                throw new FaultException<IncorrectInputData>(fault);
+            }
             Activity new_activity = new Activity();
-           // new_activity.ActivityImages = activity.ActivityImages;
-
+            foreach (ImageInfo im in activity.ActivityImages)
+            {
+                new_activity.ActivityImages.Add(ImageConverter.ToImage(im));
+            }
+            new_activity.Date = activity.Date;
+            new_activity.Route = RouteConverter.ToRoute(activity.Route);
+            new_activity.Type = ActivityTypeConverter.ToActivityType(activity.Type);
+            new_activity.Users.Add(UserConverter.ToUser(token.Session));
+            context.Activities.Add(new_activity);
+            context.SaveChanges();
         }
-       
+        public List<ActivityInfo> GetAllActivities()
+        {
+            List<ActivityInfo> rez = new List<ActivityInfo>();
+            foreach(Activity act in context.Activities)
+            {
+                rez.Add(ActivityConverter.ToActivityInfo(act));
+            }
+            return rez;
+        }
+        public List<ActivityInfo> GetMyActivities(TokenInfo token)
+        {
+            List<ActivityInfo> rez = new List<ActivityInfo>();
+            foreach (Activity act in context.Activities.Where(x=>x.Users.First()==TokenConverter.ToToken(token).Session))
+            {
+                rez.Add(ActivityConverter.ToActivityInfo(act));
+            }
+            return rez;
+        }
     }
 }

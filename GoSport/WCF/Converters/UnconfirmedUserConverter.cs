@@ -17,7 +17,7 @@ namespace WCF
             rez.Password = Password;
             rez.Phone = user.Phone;
             rez.Email = user.Email;
-            rez.City = user.City;
+            rez.City = user.City.Name;
 
             return rez;
         }

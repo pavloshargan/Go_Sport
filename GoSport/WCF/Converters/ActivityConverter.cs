@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
-namespace WCF.Converters
+namespace WCF
 {
     public static class ActivityConverter
     {
@@ -27,6 +27,21 @@ namespace WCF.Converters
             rez.Date = activity.Date;
             return rez;
 
+        }
+        public static ActivityInfo ToActivityInfo(Activity activity)
+        {
+            ActivityInfo rez = new ActivityInfo();
+            rez.Date = activity.Date;
+            foreach (Image im in activity.ActivityImages)
+            {
+                rez.ActivityImages.Add(ImageConverter.ToImageInfo(im));
+            }
+            foreach (User us in activity.Users.ToList())
+            {
+                rez.Users.Add(UserConverter.ToUserInfo(us));
+            }
+            rez.Type = activity.Type.Name;
+                return rez;
         }
     }
 }

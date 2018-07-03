@@ -62,6 +62,8 @@
     <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="Converters\PointConverter.cs" />
     <Compile Include="Converters\RouteConverter.cs" />
+    <Compile Include="Converters\TokenConverter.cs" />
+    <Compile Include="Converters\UserConverter.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using DAL;
 namespace WCF
 {
-    public static class ActivityTypeConverter
+    public static class TokenConverter
     {
-        public static ActivityType ToActivityType( string ActivityType)
+        public static Token ToToken(TokenInfo token)
         {
             using (DataModel context = new DataModel())
             {
-                return context.ActivityTypes.FirstOrDefault(x => x.Name == ActivityType);
+                return context.Tokens.FirstOrDefault(x => x.Session.Login == token.Session.Login);
             }
         }
     }

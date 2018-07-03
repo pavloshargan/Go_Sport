@@ -13,17 +13,26 @@ namespace WCF
         [OperationContract]
         [FaultContract(typeof(IncorrectInputData))]
         void SignUp(UserInfo user, string Password);
+       
         [OperationContract]
         void SendCode(string Email);
         [OperationContract]
         [FaultContract(typeof(IncorrectInputData))]
-        void ConfirmEmail(string Email, string code);
+        string ConfirmEmail(string Email, string code);
         [OperationContract]
-        ICollection<CountryInfo> GetICollectionCountries();
+        List<CountryInfo> GetListCountries();
         [OperationContract]
-        ICollection<CityInfo> GetICollectionCities();
+        List<CityInfo> GetListCities();
         [OperationContract]
+        [FaultContract(typeof(IncorrectInputData))]
+        string SignIn(string Email, string Password);
+        [OperationContract]
+        [FaultContract(typeof(IncorrectInputData))]
         void CreateActivity(ActivityInfo activity, TokenInfo token);
+        [OperationContract]
+        List<ActivityInfo> GetAllActivities();
+        [OperationContract]
+        List<ActivityInfo> GetMyActivities(TokenInfo token);
     }
     [DataContract]
     public class TokenInfo
@@ -55,7 +64,7 @@ namespace WCF
         [DataMember]
         public string Phone { get; set; }
         [DataMember]
-        public string City { get; set; }
+        public CityInfo City { get; set; }
     }
     [DataContract]
     public class CountryInfo
