@@ -65,6 +65,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\Map_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Page_Activities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window\ConfirmEmail_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +92,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pages\Map_Page.xaml.cs">
+      <DependentUpon>Map_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Page_Activities.xaml.cs">
+      <DependentUpon>Page_Activities.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window\ConfirmEmail_Window.xaml.cs">
       <DependentUpon>ConfirmEmail_Window.xaml</DependentUpon>
@@ -178,6 +192,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\olimpycs_38_icon-icons.com_68602.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

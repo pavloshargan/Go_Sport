@@ -49,5 +49,18 @@ namespace WpfMaps
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
         }
 
+        private void listViewItem2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Main_Frame.Content = new Page_Activities();
+        }
+
+        private void listViewItem3_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Main_Frame.Content = new Map_Page();
+        }
+
+
+
+
     }
 }
