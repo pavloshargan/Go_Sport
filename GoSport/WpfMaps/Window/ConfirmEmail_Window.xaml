@@ -11,7 +11,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  
         >
 
 
