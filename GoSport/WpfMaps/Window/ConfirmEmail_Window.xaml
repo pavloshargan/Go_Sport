@@ -11,7 +11,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  
         >
     
     
@@ -41,7 +41,7 @@
         </StackPanel>
         
         
-        <Button Margin="10,156,134,102" Grid.Row="1">Submit</Button>
+        <Button Click="Button_Submit_Click"  Margin="10,156,134,102" Grid.Row="1">Submit</Button>
         <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="141,156,10,102" Grid.Row="1">Send Again</Button>
         
         

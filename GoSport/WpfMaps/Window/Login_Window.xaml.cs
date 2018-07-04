@@ -39,7 +39,7 @@ namespace WpfMaps
         
         private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            SignUp_Window window = new SignUp_Window();
+            SignUp_Window window = new SignUp_Window(null,null);
             window.Show();this.Close();
 
         }

@@ -72,11 +72,11 @@
 
         <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="40,10">
             <materialDesign:PackIcon Kind="Account" Foreground="White" VerticalAlignment="Center" Margin="0,8" Width="30"/>
-            <TextBox
+            <TextBox Name="txtFirstName"
                materialDesign:HintAssist.Hint="First Name"
                 FontSize="17"
                 Foreground="White" VerticalContentAlignment="Center"
-                Name="txtFirstName" Width="361"/>
+                 Width="361"/>
         </StackPanel>
         <StackPanel Grid.Row="2"  Orientation="Horizontal" Margin="40,10">
             <materialDesign:PackIcon Kind="Account" Foreground="White" VerticalAlignment="Center" Margin="0,8" Width="30"/>
@@ -104,7 +104,7 @@
         </StackPanel>
         <StackPanel Grid.Row="5"  Orientation="Horizontal" Margin="40,10">
             <materialDesign:PackIcon Kind="Key" Foreground="White" VerticalAlignment="Center" Margin="0,8" Width="30" />
-            <PasswordBox
+            <PasswordBox  Name="txtPassword"
                materialDesign:HintAssist.Hint="Password"
                 FontSize="17"
                 Foreground="White" VerticalContentAlignment="Center"
@@ -113,7 +113,7 @@
         <StackPanel Grid.Row="6"  Orientation="Horizontal" Margin="40,10">
             <materialDesign:PackIcon Kind="Key" Foreground="White" VerticalAlignment="Center" Margin="0,8" Width="30" />
             <PasswordBox
-                Name="CinfirmPassBox"
+                Name="txtConfirmPassBox"
                 materialDesign:HintAssist.Hint="Confirm Password"
                 FontSize="17"
                 Foreground="White" VerticalContentAlignment="Center"

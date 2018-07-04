@@ -22,9 +22,20 @@ namespace WpfMaps
     public partial class SignUp_Window : Window
     {
         ServiceClient service = new ServiceClient();
-        public SignUp_Window()
+        public SignUp_Window(UserInfo user, string password)
         {
             InitializeComponent();
+            if(user!=null)
+            {
+                txtFirstName.Text = user.Firstname;
+                txtLastName.Text = user.LastName;
+                txtLogin.Text = user.Login;
+                txtEmail.Text = user.Email;
+                txtPhone.Text = user.Phone;
+                CountriesBox.SelectedItem = user.City.CountryInfo.Name;
+                CitiesBox.SelectedItem = user.City.Name;
+                
+            }
         }
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
@@ -45,20 +56,23 @@ namespace WpfMaps
             UserInfo new_user = new UserInfo();
             new_user.Firstname = txtFirstName.Text;
             new_user.LastName = txtLastName.Text;
+            new_user.Email = txtEmail.Text;
             new_user.Login = txtLogin.Text;
             new_user.Phone = txtPhone.Text;
             new_user.City = new CityInfo() { Name = CitiesBox.SelectedItem.ToString()};
             try
             {
-                service.SignUp(new_user, txtPassword.Text);
+                service.SignUp(new_user, txtPassword.Password);
             }
             catch (FaultException<IncorrectInputData> ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
             }
-            ConfirmEmail_Window window = new ConfirmEmail_Window();
-            window.ShowDialog();
+            service.SendCode(new_user.Email);
+            ConfirmEmail_Window window = new ConfirmEmail_Window(new_user, txtPassword.Password);
+            window.Show();
+            this.Close();
         }
 
         private void CountriesBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
