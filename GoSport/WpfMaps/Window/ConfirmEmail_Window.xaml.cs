@@ -23,6 +23,7 @@ namespace WpfMaps
         private UserInfo CurrentUser;
         private string Password;
         ServiceClient client = new ServiceClient();
+
         public ConfirmEmail_Window(UserInfo user, string password)
         {
             InitializeComponent();

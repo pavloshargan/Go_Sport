@@ -86,6 +86,9 @@ namespace WCF
             }
         }
 
+
+
+
         public List<CountryInfo> GetListCountries()
         {
             List<CountryInfo> countries = new List<CountryInfo>();

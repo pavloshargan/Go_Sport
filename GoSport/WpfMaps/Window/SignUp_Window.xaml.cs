@@ -48,7 +48,6 @@ namespace WpfMaps
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
-            
             Login_Window window = new Login_Window();
             window.Show();this.Close();
         }
@@ -61,32 +60,53 @@ namespace WpfMaps
 
         private void Button_Click_Submit(object sender, RoutedEventArgs e)
         {
-            UserInfo new_user = new UserInfo();
-            new_user.Firstname = txtFirstName.Text;
-            new_user.LastName = txtLastName.Text;
-            new_user.Email = txtEmail.Text;
-            new_user.Login = txtLogin.Text;
-            new_user.Phone = txtPhone.Text;
-            //CityInfo selected_city = (CitiesBox.SelectedItem as CityInfo);
-          //  new_user.City = service.GetListCities().FirstOrDefault(x=>x.Name==selected_city.Name&&x.CountryInfo.Name==selected_city.CountryInfo.Name);
-            try
+            if (String.IsNullOrEmpty(txtFirstName.Text) || String.IsNullOrEmpty(txtLastName.Text) || String.IsNullOrEmpty(txtEmail.Text) ||
+                String.IsNullOrEmpty(txtLogin.Text) || String.IsNullOrEmpty(txtPhone.Text)||CitiesBox.SelectedItem==null||CountriesBox.SelectedItem==null)
             {
-                service.SignUp(new_user, txtPassword.Password);
+                MessageBox.Show("Please input all info");
             }
-            catch (FaultException<IncorrectInputData> ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-                return;
+                UserInfo new_user = new UserInfo();
+                new_user.Firstname = txtFirstName.Text;
+                new_user.LastName = txtLastName.Text;
+                new_user.Email = txtEmail.Text;
+                new_user.Login = txtLogin.Text;
+                new_user.Phone = txtPhone.Text;
+                new_user.City = new CityInfo() { Name = (CitiesBox.SelectedItem as CityInfo).Name };
+                try
+                {
+                    service.SignUp(new_user, txtPassword.Password);
+                }
+                catch (FaultException<IncorrectInputData> ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                try
+                {
+                    service.SendCode(new_user.Email);
+                    ConfirmEmail_Window window = new ConfirmEmail_Window(new_user, txtPassword.Password);
+                    window.Show();
+                    this.Close();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Incorect email");
+                }
+               
             }
-            service.SendCode(new_user.Email);
-            ConfirmEmail_Window window = new ConfirmEmail_Window(new_user, txtPassword.Password);
-            window.Show();
-            this.Close();
         }
 
         private void CountriesBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CitiesBox.ItemsSource = (CountriesBox.SelectedItem as CountryInfo).CityInfos;
         }
+
+
+
+
+
+
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfMaps"
         mc:Ignorable="d"
-        Title="ConfirmEmail_Window" Height="370" Width="270"
+        Title="ConfirmEmail_Window" Height="255" Width="270"
         WindowStyle="None"
         Background="#00000000"
         ResizeMode="NoResize"
@@ -13,16 +13,16 @@
         WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  
         >
-    
-    
-    
+
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Rectangle Opacity="0.8" Grid.RowSpan="2" Fill="Black" RadiusY="16" RadiusX="16"></Rectangle>
+        <Rectangle Opacity="0.7" Grid.RowSpan="2" Fill="Black" RadiusY="23.222" RadiusX="23.222"></Rectangle>
         <Rectangle
             Grid.ColumnSpan="2"
             Grid.Row="0"
@@ -30,23 +30,6 @@
             Margin="40,50,40,0"
             Height="1"
         />
-        <Label Foreground="White" FontSize="29" VerticalAlignment="Center" HorizontalAlignment="Center">Confirm</Label>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,60,10,183">
-            <materialDesign:PackIcon Kind="Key" Foreground="White" VerticalAlignment="Center" Margin="0,8" Width="30" />
-            <TextBox Name="CodeBox"
-                materialDesign:HintAssist.Hint="Enter Code"
-                FontSize="17"
-                Foreground="White" VerticalContentAlignment="Center"
-                Width="221"/>
-        </StackPanel>
-        
-        
-        <Button Click="Button_Submit_Click"  Margin="10,156,134,102" Grid.Row="1">Submit</Button>
-        <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="141,156,10,102" Grid.Row="1">Send Again</Button>
-        
-        
-        
-        
         <Button 
             Foreground="White" x:Name="ButtonClose"
             Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
@@ -58,7 +41,26 @@
             >
             <materialDesign:PackIcon Kind="Power" />
         </Button>
-        
-        
+        <Label Foreground="White" FontSize="29" VerticalAlignment="Center" HorizontalAlignment="Center">Confirm</Label>
+        <Label Foreground="White" FontSize="12" VerticalAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Center" Margin="10,0,40,150" Grid.Row="1" Width="220" Height="25">The code has been sent to your email</Label>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,25,10,113">
+            <materialDesign:PackIcon Kind="Key" Foreground="White" VerticalAlignment="Center" Margin="0,8" Width="30" />
+            <TextBox Name="CodeBox"
+                materialDesign:HintAssist.Hint="Enter Code"
+                FontSize="17"
+                Foreground="White" VerticalContentAlignment="Center"
+                Width="221"/>
+        </StackPanel>
+
+
+        <Button Margin="10,93,134,50" Grid.Row="1">Submit</Button>
+        <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="141,93,10,50" Grid.Row="1">Send Again</Button>
+
+
+
+
+
+
+
     </Grid>
 </Window>

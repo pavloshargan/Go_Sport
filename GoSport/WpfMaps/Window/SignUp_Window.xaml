@@ -137,6 +137,7 @@
                   SelectionChanged="CountriesBox_SelectionChanged"
                   >
         </ComboBox>
+        
         <ComboBox Name="CitiesBox" Grid.Row="8" Margin="218,0,10,10" 
                   materialDesign:HintAssist.Hint="Enter City"
                   Foreground="White" FontSize="17" Height="42" VerticalAlignment="Bottom"

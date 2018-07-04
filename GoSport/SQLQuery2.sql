@@ -14,6 +14,8 @@ select * from ActivityTypes
 
 select * from Users
 
+select * from UnconfirmedUsers
+
 select * from Activities
 
 
