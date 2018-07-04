@@ -56,33 +56,40 @@ namespace WpfMaps
             }
             else
             {
-                UserInfo new_user = new UserInfo();
-                new_user.Firstname = txtFirstName.Text;
-                new_user.LastName = txtLastName.Text;
-                new_user.Email = txtEmail.Text;
-                new_user.Login = txtLogin.Text;
-                new_user.Phone = txtPhone.Text;
-                new_user.City = new CityInfo() { Name = (CitiesBox.SelectedItem as CityInfo).Name };
-                try
+                if (txtPassword.Password != txtConfirmPassBox.Password)
                 {
-                    service.SignUp(new_user, txtPassword.Password);
+                    MessageBox.Show("Passwords are different!");
                 }
-                catch (FaultException<IncorrectInputData> ex)
+                else
                 {
-                    MessageBox.Show(ex.Detail.Message);
-                    return;
+                    UserInfo new_user = new UserInfo();
+                    new_user.Firstname = txtFirstName.Text;
+                    new_user.LastName = txtLastName.Text;
+                    new_user.Email = txtEmail.Text;
+                    new_user.Login = txtLogin.Text;
+                    new_user.Phone = txtPhone.Text;
+                    new_user.City = new CityInfo() { Name = (CitiesBox.SelectedItem as CityInfo).Name };
+                    try
+                    {
+                        service.SignUp(new_user, txtPassword.Password);
+                    }
+                    catch (FaultException<IncorrectInputData> ex)
+                    {
+                        MessageBox.Show(ex.Detail.Message);
+                        return;
+                    }
+                    try
+                    {
+                        service.SendCode(new_user.Email);
+                        ConfirmEmail_Window window = new ConfirmEmail_Window(new_user, txtPassword.Password);
+                        window.Show();
+                        this.Close();
+                    }
+                    catch (FaultException<IncorrectInputData> ex)
+                    {
+                        MessageBox.Show(ex.Detail.Message);
+                    }
                 }
-                try
-                {
-                    service.SendCode(new_user.Email);
-                    ConfirmEmail_Window window = new ConfirmEmail_Window(new_user, txtPassword.Password);
-                    window.Show();
-                    this.Close();
-                }
-                catch(FaultException<IncorrectInputData> ex)
-                {
-                    MessageBox.Show(ex.Detail.Message);
-                }     
             }
         }
         private void CountriesBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

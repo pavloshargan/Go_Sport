@@ -56,6 +56,9 @@ namespace WpfMaps
 
         }
 
+        private void Forgot_MouseDown(object sender, MouseButtonEventArgs e)
+        {
 
+        }
     }
 }
