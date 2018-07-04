@@ -2,10 +2,25 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8000/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCF" />
   <xs:import schemaLocation="http://localhost:8000/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="Authentification">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthentificationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="AuthentificationResult" nillable="true" type="q1:TokenInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SignUp">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="user" nillable="true" type="q1:UserInfo" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="user" nillable="true" type="q2:UserInfo" />
         <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -50,7 +65,7 @@
   <xs:element name="GetListCountriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="GetListCountriesResult" nillable="true" type="q2:ArrayOfCountryInfo" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="GetListCountriesResult" nillable="true" type="q3:ArrayOfCountryInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -62,7 +77,7 @@
   <xs:element name="GetListCitiesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="GetListCitiesResult" nillable="true" type="q3:ArrayOfCityInfo" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="GetListCitiesResult" nillable="true" type="q4:ArrayOfCityInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -84,8 +99,8 @@
   <xs:element name="CreateActivity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="activity" nillable="true" type="q4:ActivityInfo" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="token" nillable="true" type="q5:TokenInfo" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="activity" nillable="true" type="q5:ActivityInfo" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="token" nillable="true" type="q6:TokenInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -102,21 +117,21 @@
   <xs:element name="GetAllActivitiesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="GetAllActivitiesResult" nillable="true" type="q6:ArrayOfActivityInfo" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="GetAllActivitiesResult" nillable="true" type="q7:ArrayOfActivityInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetMyActivities">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="token" nillable="true" type="q7:TokenInfo" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="token" nillable="true" type="q8:TokenInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetMyActivitiesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="GetMyActivitiesResult" nillable="true" type="q8:ArrayOfActivityInfo" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WCF" minOccurs="0" name="GetMyActivitiesResult" nillable="true" type="q9:ArrayOfActivityInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -128,7 +143,7 @@
   <xs:element name="GetActivityTypesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetActivityTypesResult" nillable="true" type="q9:ArrayOfstring" />
+        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetActivityTypesResult" nillable="true" type="q10:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

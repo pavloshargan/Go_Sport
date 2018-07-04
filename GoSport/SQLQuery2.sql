@@ -25,12 +25,13 @@ delete from UnconfirmedUsers where 35=35
 delete from Countries where 4=4
 delete from Cities where 4=4
 
+delete from ActivityTypes where 4=4
+
 
 select * from Tokens
 
 select * from Cities
 select * from Countries
-
 
 
 insert into Cities

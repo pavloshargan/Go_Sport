@@ -10,11 +10,17 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8000/?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:8000/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCF" />
       <xsd:import schemaLocation="http://localhost:8000/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8000/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCF" />
       <xsd:import schemaLocation="http://localhost:8000/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService_Authentification_InputMessage">
+    <wsdl:part name="parameters" element="tns:Authentification" />
+  </wsdl:message>
+  <wsdl:message name="IService_Authentification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthentificationResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_SignUp_InputMessage">
     <wsdl:part name="parameters" element="tns:SignUp" />
   </wsdl:message>
@@ -88,6 +94,10 @@
     <wsdl:part name="parameters" element="tns:GetActivityTypesResponse" />
   </wsdl:message>
   <wsdl:portType name="IService">
+    <wsdl:operation name="Authentification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Authentification" message="tns:IService_Authentification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AuthentificationResponse" message="tns:IService_Authentification_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SignUp">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/SignUp" message="tns:IService_SignUp_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/SignUpResponse" message="tns:IService_SignUp_OutputMessage" />
@@ -136,6 +146,15 @@
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
     <wsp:PolicyReference URI="#BasicHttpBinding_IService_policy" />
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Authentification">
+      <soap:operation soapAction="http://tempuri.org/IService/Authentification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SignUp">
       <soap:operation soapAction="http://tempuri.org/IService/SignUp" style="document" />
       <wsdl:input>

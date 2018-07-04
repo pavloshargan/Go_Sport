@@ -100,6 +100,8 @@ namespace DAL
         public DateTime Date { get; set; }
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<Image> ActivityImages { get; set; }
+
+
         public Activity()
         {
             Users = new List<User>();

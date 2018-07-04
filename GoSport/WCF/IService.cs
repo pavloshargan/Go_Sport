@@ -11,6 +11,9 @@ namespace WCF
     public interface IService
     {
         [OperationContract]
+        TokenInfo Authentification(string login, string pass);
+
+        [OperationContract]
         [FaultContract(typeof(IncorrectInputData))]
         void SignUp(UserInfo user, string Password);
        
@@ -45,8 +48,11 @@ namespace WCF
     [DataContract]
     public class TokenInfo
     {
+        [DataMember]
         public virtual UserInfo Session { get; set; }
+        [DataMember]
         public string Key { get; set; }
+        [DataMember]
         public DateTime Date { get; set; }
     }
 
@@ -147,7 +153,6 @@ namespace WCF
             Points = new List<PointInfo>();
         }
     }
-
 
     [DataContract]
     public class PointInfo

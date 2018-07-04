@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using WpfMaps.ServiceReference1;
 namespace WpfMaps
 {
     /// <summary>
@@ -19,6 +19,7 @@ namespace WpfMaps
     /// </summary>
     public partial class Login_Window : Window
     {
+        ServiceClient service = new ServiceClient();
         public Login_Window()
         {
             InitializeComponent();
@@ -33,6 +34,9 @@ namespace WpfMaps
      
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
         {
+            CurrentSession.TokenInfo = service.Authentification(Emailbox.Text, Passbox.Password); 
+           
+
             Main_Window main = new Main_Window();
             main.Show(); this.Close();
         }

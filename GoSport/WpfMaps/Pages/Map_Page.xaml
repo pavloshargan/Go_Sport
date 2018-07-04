@@ -3,13 +3,32 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      
       xmlns:local="clr-namespace:WpfMaps"
       mc:Ignorable="d" 
-       d:DesignHeight="550" d:DesignWidth="770"
+      d:DesignHeight="550" d:DesignWidth="770"
       Title="Map_Page">
 
     <Grid>
-        
+        <m:Map Name="MyMap"
+               CredentialsProvider="AsBORSS10JgJ4m-YquwtXqviPkDtDiOl3WnqTMxTzON5hrx40b9iOevNdqSzjvRM"
+               Center="47.617,-122.28"
+               ZoomLevel="10"
+               MouseRightButtonDown="MyMap_MouseRightButtonDown"
+              
+               >
+            <m:Map.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="From" Click="MenuItem_Click"></MenuItem>
+                    <MenuItem Header="To" Click="MenuItem_Click_1"></MenuItem>
+                    <MenuItem Header="Add" Click="MenuItem_Click_2"></MenuItem>
+                </ContextMenu>
+            </m:Map.ContextMenu>
+
+
+
+        </m:Map>
     </Grid>
     
     

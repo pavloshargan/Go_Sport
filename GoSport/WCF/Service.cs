@@ -9,16 +9,13 @@ using System.Text;
 using DAL;
 namespace WCF
 {
-
-
+    
     public class Service : IService
     {
         private DataModel context = new DataModel();
 
 
         private int CurrentSessionId;
-
-
         public void SignUp(UserInfo user, string Password)
         {
             if (context.Users.Any(x => x.Login == user.Login))
@@ -26,6 +23,7 @@ namespace WCF
                 IncorrectInputData fault = new IncorrectInputData();
                 fault.Message = "Enter another login";
                 fault.Description = "Login has been alredy used";
+                
                 throw new FaultException<IncorrectInputData>(fault);
             }
             if (context.Users.Any(x => x.Email == user.Email))
@@ -190,13 +188,22 @@ namespace WCF
             return types;
         }
 
-
-
-
-
-
-
-
-
+        public TokenInfo Authentification(string login, string pass)
+        {
+            TokenInfo k=new TokenInfo();
+            if(context.Users.Any(x=>x.Login==login&&x.Password==pass))
+            {
+                //context.Users.FirstOrDefault(x => x.Login == login && x.Password == pass).
+                Token t= context.Tokens.FirstOrDefault(x => x.Session.Email == context.Users.FirstOrDefault(y => y.Login == login && y.Password == pass).Email);
+                k.Key = t.Key;
+                k.Date = t.Date;
+                k.Session = UserConverter.ToUserInfo(t.Session);
+            }
+            else
+            {
+                k = null;
+            }
+            return k;
+        }
     }
 }
