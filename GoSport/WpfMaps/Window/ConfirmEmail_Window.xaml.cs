@@ -23,6 +23,7 @@ namespace WpfMaps
         private UserInfo CurrentUser;
         private string Password;
         ServiceClient client = new ServiceClient();
+
         public ConfirmEmail_Window(UserInfo user, string password)
         {
             InitializeComponent();
@@ -38,7 +39,7 @@ namespace WpfMaps
 
         private void Button_Submit_Click(object sender, RoutedEventArgs e)
         {
-         // client.ConfirmEmail()
+         
         }
 
         
