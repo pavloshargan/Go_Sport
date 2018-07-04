@@ -57,7 +57,6 @@ namespace WpfMaps
             CountriesBox.ItemsSource = service.GetListCountries();
             //CitiesBox.ItemsSource = service.GetListCities();
         }
-
         private void Button_Click_Submit(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrEmpty(txtFirstName.Text) || String.IsNullOrEmpty(txtLastName.Text) || String.IsNullOrEmpty(txtEmail.Text) ||
@@ -80,9 +79,10 @@ namespace WpfMaps
                 }
                 catch (FaultException<IncorrectInputData> ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.ToString());
                     return;
                 }
+
                 try
                 {
                     service.SendCode(new_user.Email);
@@ -97,7 +97,6 @@ namespace WpfMaps
                
             }
         }
-
         private void CountriesBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CitiesBox.ItemsSource = (CountriesBox.SelectedItem as CountryInfo).CityInfos;

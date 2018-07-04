@@ -17,6 +17,8 @@ namespace WCF
 
 
         private int CurrentSessionId;
+
+
         public void SignUp(UserInfo user, string Password)
         {
             if (context.Users.Any(x => x.Login == user.Login))
@@ -31,13 +33,13 @@ namespace WCF
                 IncorrectInputData fault = new IncorrectInputData();
                 fault.Message = "Enter another Email";
                 fault.Description = "Email has been alredy used";
+                
                 throw new FaultException<IncorrectInputData>(fault);
             }
             try
             {
                 context.UnconfirmedUsers.Add(UnconfirmedUserConverter.ToUnconfirmedUser(user, Password));
                 context.SaveChanges();
-
             }
             catch (Exception ex)
             {
@@ -49,7 +51,6 @@ namespace WCF
         }
         public void SendCode(string Email)
         {
-
             Random random = new Random();
             string code = random.Next(100000, 999999).ToString();
 
@@ -67,13 +68,27 @@ namespace WCF
         }
         public string ConfirmEmail(string Email, string code)
         {
-            UnconfirmedUser unconfirmedUser = context.UnconfirmedUsers.FirstOrDefault(x => x.Email == Email);
+            UnconfirmedUser unconfirmedUser = context.UnconfirmedUsers.FirstOrDefault(x => x.Email == Email&&x.Code==code);
             if (code == unconfirmedUser.Code)
             {
-                context.Users.Add(UnconfirmedUserConverter.ToUser(unconfirmedUser));
+                //context.Users.Add(UnconfirmedUserConverter.ToUser(unconfirmedUser));
+                User a = new User()
+                {
+                    Firstname = unconfirmedUser.Firstname,
+                    LastName = unconfirmedUser.LastName,
+                    Password = unconfirmedUser.Password,
+                    Email = unconfirmedUser.Email,
+                    Login = unconfirmedUser.Login,
+                    Phone = unconfirmedUser.Phone,
+                    City = context.Cities.First(x => x.Name == unconfirmedUser.City)
+                };
+                context.Users.Add(a);
+
                 Random random = new Random();
                 string key = random.Next(100000, 999999).ToString();
-                context.Tokens.Add(new Token() { Session = UnconfirmedUserConverter.ToUser(unconfirmedUser), Key = key, Date = DateTime.Now });
+
+                context.Tokens.Add(new Token() { Session = a, Key = key, Date = DateTime.Now });
+
                 context.SaveChanges();
                 return key;
             }
@@ -86,9 +101,7 @@ namespace WCF
             }
         }
 
-
-
-
+       
         public List<CountryInfo> GetListCountries()
         {
             List<CountryInfo> countries = new List<CountryInfo>();
@@ -167,7 +180,6 @@ namespace WCF
             }
             return rez;
         }
-
         public List<string> GetActivityTypes()
         {
             List<string> types = new List<string>();

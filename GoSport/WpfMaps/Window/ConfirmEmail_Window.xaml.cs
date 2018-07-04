@@ -39,7 +39,16 @@ namespace WpfMaps
 
         private void Button_Submit_Click(object sender, RoutedEventArgs e)
         {
-            client.ConfirmEmail(CurrentUser.Email, CodeBox.Text);
+            try
+            {
+                client.ConfirmEmail(CurrentUser.Email, CodeBox.Text);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+            
         }
 
         

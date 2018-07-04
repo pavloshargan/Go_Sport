@@ -24,7 +24,10 @@ namespace TestDAL
                 Console.WriteLine(a.Firstname);
             }
 
-
+           // foreach (City a in model.Cities)
+           // {
+                Console.WriteLine(model.Cities.FirstOrDefault(x=>x.Name=="Rivne").Name);
+           // }
 
 
         }

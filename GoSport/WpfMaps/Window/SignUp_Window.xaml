@@ -100,7 +100,7 @@
                materialDesign:HintAssist.Hint="Email"
                 FontSize="17"
                 Foreground="White" VerticalContentAlignment="Center"
-                Width="361"/>
+                Width="361" Text="klikun2001@gmail.com"/>
         </StackPanel>
         <StackPanel Grid.Row="5"  Orientation="Horizontal" Margin="40,10">
             <materialDesign:PackIcon Kind="Key" Foreground="White" VerticalAlignment="Center" Margin="0,8" Width="30" />

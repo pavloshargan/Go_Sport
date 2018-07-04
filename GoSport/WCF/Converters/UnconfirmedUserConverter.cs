@@ -23,16 +23,18 @@ namespace WCF
         }
        public static User ToUser(UnconfirmedUser user)
         {
-            User rez = new User();
-            rez.Firstname = user.Firstname;
-            rez.LastName = user.LastName;
-            rez.Login = user.Login;
-            rez.Phone = user.Phone;
-            rez.Email = user.Email;
-            rez.Password = user.Password;
+            User rez = new User
+            {
+                Firstname = user.Firstname,
+                LastName = user.LastName,
+                Login = user.Login,
+                Phone = user.Phone,
+                Email = user.Email,
+                Password = user.Password
+            };
             using (DataModel ctx = new DataModel())
             {
-                rez.City = ctx.Cities.FirstOrDefault(x=>x.Name==user.City);
+                rez.City=ctx.Cities.First(x=>x.Name==user.City);
             }
                 
             return rez;
