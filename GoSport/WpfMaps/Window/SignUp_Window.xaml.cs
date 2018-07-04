@@ -36,16 +36,13 @@ namespace WpfMaps
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CountriesBox.ItemsSource = service.GetListCountries();
-            CitiesBox.ItemsSource = service.GetListCities();
+            //CitiesBox.ItemsSource = service.GetListCities();
         }
 
         private void Button_Click_Submit(object sender, RoutedEventArgs e)
         {
             ConfirmEmail_Window window = new ConfirmEmail_Window();
             window.ShowDialog();
-
-
-
         }
 
         private void CountriesBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

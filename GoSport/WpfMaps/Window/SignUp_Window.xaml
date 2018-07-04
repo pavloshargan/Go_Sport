@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="SignUp_Window"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Height="515" Width="398"
+        Height="632.437" Width="398"
         WindowStyle="None"
         Background="#00000000"
         ResizeMode="NoResize"
@@ -37,13 +37,14 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
 
 
         <Rectangle Opacity="0.7"
                    Fill="Black"
-                   Grid.Row="0" Grid.RowSpan="9"
+                   Grid.Row="0" Grid.RowSpan="10"
                    Grid.ColumnSpan="2"
                    RadiusY="34" RadiusX="34"
         ></Rectangle>
@@ -103,13 +104,22 @@
         </StackPanel>
         <StackPanel Grid.Row="5"  Orientation="Horizontal" Margin="40,10">
             <materialDesign:PackIcon Kind="Key" Foreground="White" VerticalAlignment="Center" Margin="0,8" Width="30" />
-            <TextBox
+            <PasswordBox
                materialDesign:HintAssist.Hint="Password"
                 FontSize="17"
                 Foreground="White" VerticalContentAlignment="Center"
                 Width="361"/>
         </StackPanel>
         <StackPanel Grid.Row="6"  Orientation="Horizontal" Margin="40,10">
+            <materialDesign:PackIcon Kind="Key" Foreground="White" VerticalAlignment="Center" Margin="0,8" Width="30" />
+            <PasswordBox
+                Name="CinfirmPassBox"
+                materialDesign:HintAssist.Hint="Confirm Password"
+                FontSize="17"
+                Foreground="White" VerticalContentAlignment="Center"
+                Width="361"/>
+        </StackPanel>
+        <StackPanel Grid.Row="7"  Orientation="Horizontal" Margin="40,10">
             <materialDesign:PackIcon Kind="Phone" Foreground="White" VerticalAlignment="Center" Margin="0,8" Width="30"/>
             <TextBox
                materialDesign:HintAssist.Hint="Phone"
@@ -118,7 +128,7 @@
                 Width="301"/>
         </StackPanel>
 
-        <ComboBox Name="CountriesBox" Grid.Row="7" Margin="10,0,218,10" 
+        <ComboBox Name="CountriesBox" Grid.Row="8" Margin="10,0,218,10" 
                   materialDesign:HintAssist.Hint="Enter Country"
                   Foreground="White" FontSize="17" Height="42" VerticalAlignment="Bottom"
                   HorizontalContentAlignment="Center"
@@ -126,12 +136,8 @@
                   DisplayMemberPath="Name"
                   SelectionChanged="CountriesBox_SelectionChanged"
                   >
-            
-                
-            
-            
         </ComboBox>
-        <ComboBox Name="CitiesBox" Grid.Row="7" Margin="218,0,10,10" 
+        <ComboBox Name="CitiesBox" Grid.Row="8" Margin="218,0,10,10" 
                   materialDesign:HintAssist.Hint="Enter City"
                   Foreground="White" FontSize="17" Height="42" VerticalAlignment="Bottom"
                   HorizontalContentAlignment="Center"
@@ -142,7 +148,7 @@
         </ComboBox>
 
         <!--button submit-->
-        <Button Click="Button_Click_Submit" Margin="95,8,95,11" Grid.Row="8">Submit</Button>
+        <Button Click="Button_Click_Submit" Margin="95,8,95,11" Grid.Row="9">Submit</Button>
         
         <!--button close-->
         <Button 
