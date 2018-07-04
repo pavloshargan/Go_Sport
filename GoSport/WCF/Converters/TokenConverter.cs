@@ -15,5 +15,9 @@ namespace WCF
                 return context.Tokens.FirstOrDefault(x => x.Session.Login == token.Session.Login);
             }
         }
+        public static TokenInfo ToTokenInfo(Token token)
+        {
+            return new TokenInfo() { Key = token.Key, Date = token.Date, Session = UserConverter.ToUserInfo(token.Session) };
+        }
     }
 }

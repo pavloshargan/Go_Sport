@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using WpfMaps.ServiceReference1;
 namespace WpfMaps
 {
     /// <summary>
@@ -19,7 +19,9 @@ namespace WpfMaps
     /// </summary>
     public partial class Main_Window : Window
     {
-        public Main_Window()
+        private ServiceClient service;
+        private TokenInfo CurrentSession;
+        public Main_Window(TokenInfo token)
         {
             InitializeComponent();
             UserName_Block.Text = CurrentSession.TokenInfo.Session.Firstname;
