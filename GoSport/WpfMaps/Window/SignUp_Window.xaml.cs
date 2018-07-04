@@ -32,17 +32,7 @@ namespace WpfMaps
                 txtLogin.Text = user.Login;
                 txtEmail.Text = user.Email;
                 txtPhone.Text = user.Phone;
-                //foreach(CountryInfo c in CountriesBox.Items)
-                //{
-                //    if (c.Name == user.City.CountryInfo.Name)
-                //        CountriesBox.SelectedItem = c;
-                //}
-                //CitiesBox.ItemsSource = (CountriesBox.SelectedItem as CountryInfo).CityInfos;
-                //foreach (CityInfo c in CitiesBox.Items)
-                //{
-                //    if(c.Name==user.City.Name)
-                //    CitiesBox.SelectedItem = c;
-                //}
+                
             }
         }
 
@@ -79,10 +69,9 @@ namespace WpfMaps
                 }
                 catch (FaultException<IncorrectInputData> ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show(ex.Detail.Message);
                     return;
                 }
-
                 try
                 {
                     service.SendCode(new_user.Email);
@@ -90,22 +79,15 @@ namespace WpfMaps
                     window.Show();
                     this.Close();
                 }
-                catch(Exception ex)
+                catch(FaultException<IncorrectInputData> ex)
                 {
-                    MessageBox.Show("Incorect email");
-                }
-               
+                    MessageBox.Show(ex.Detail.Message);
+                }     
             }
         }
         private void CountriesBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CitiesBox.ItemsSource = (CountriesBox.SelectedItem as CountryInfo).CityInfos;
         }
-
-
-
-
-
-
     }
 }

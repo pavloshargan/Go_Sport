@@ -53,7 +53,7 @@
             Foreground="White" 
             HorizontalAlignment="Center" VerticalAlignment="Center" 
             FontSize="30"
-        >Log In</Label>
+        >Sign Up</Label>
         <Rectangle
             Grid.ColumnSpan="2"
             Grid.Row="0"

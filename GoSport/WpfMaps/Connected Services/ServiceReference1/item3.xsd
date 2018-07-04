@@ -44,6 +44,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfCountryInfo" nillable="true" type="tns:ArrayOfCountryInfo" />
+  <xs:complexType name="TokenInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Session" nillable="true" type="tns:UserInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TokenInfo" nillable="true" type="tns:TokenInfo" />
   <xs:complexType name="ActivityInfo">
     <xs:sequence>
       <xs:element minOccurs="0" name="ActivityImages" nillable="true" type="tns:ArrayOfImageInfo" />
@@ -93,10 +101,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfUserInfo" nillable="true" type="tns:ArrayOfUserInfo" />
-  <xs:complexType name="TokenInfo">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="TokenInfo" nillable="true" type="tns:TokenInfo" />
   <xs:complexType name="ArrayOfActivityInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ActivityInfo" nillable="true" type="tns:ActivityInfo" />

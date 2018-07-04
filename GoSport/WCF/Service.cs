@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Text.RegularExpressions;
 using DAL;
 namespace WCF
 {
@@ -31,13 +32,22 @@ namespace WCF
             if (context.Users.Any(x => x.Email == user.Email))
             {
                 IncorrectInputData fault = new IncorrectInputData();
-                fault.Message = "Enter another Email";
-                fault.Description = "Email has been alredy used";
-                
+  
+                throw new FaultException<IncorrectInputData>(fault, new FaultReason("Email has been alredy used"));
+            }
+            if(false)
+            {
+                IncorrectInputData fault = new IncorrectInputData();
+                fault.Message = "Incorrect Email";
+                fault.Description = "Enter enother e-mail";
                 throw new FaultException<IncorrectInputData>(fault);
             }
-            try
+                try
             {
+                //if (context.UnconfirmedUsers.Any(x => x.Email == user.Email))
+                //{
+                //    context.UnconfirmedUsers.Remove(context.UnconfirmedUsers.FirstOrDefault(x => x.Email == user.Email));
+                //}
                 context.UnconfirmedUsers.Add(UnconfirmedUserConverter.ToUnconfirmedUser(user, Password));
                 context.SaveChanges();
             }
@@ -120,18 +130,18 @@ namespace WCF
             }
             return cities;
         }
-        public string SignIn(string Email, string Password)
+        public TokenInfo SignIn(string Login, string Password)
         {
-            if (context.Users.Any(x => x.Email == Email && x.Password == Password))
+            if (context.Users.Any(x => x.Login == Login && x.Password == Password))
             {
-                User CurrentSession = context.Users.FirstOrDefault(x => x.Email == Email && x.Password == Password);
+                User CurrentSession = context.Users.FirstOrDefault(x => x.Login == Login && x.Password == Password);
                 Random random = new Random();
                 string key = random.Next(100000, 999999).ToString();
-
-                context.Tokens.FirstOrDefault(x => x.Session == CurrentSession).Key = key;
-                context.Tokens.FirstOrDefault(x => x.Session == CurrentSession).Date = DateTime.Now;
+                Token token = context.Tokens.FirstOrDefault(x => x.Session.Login == CurrentSession.Login);
+                token.Key = key;
+                token.Date = DateTime.Now;
                 context.SaveChanges();
-                return key;
+                return TokenConverter.ToTokenInfo(token);
             }
             else
             {
@@ -143,6 +153,8 @@ namespace WCF
         }
         public void CreateActivity(ActivityInfo activity, TokenInfo token)
         {
+         //   User current_user
+            //if(token.Key==)
             if (activity.Date < DateTime.Now)
             {
                 IncorrectInputData fault = new IncorrectInputData();

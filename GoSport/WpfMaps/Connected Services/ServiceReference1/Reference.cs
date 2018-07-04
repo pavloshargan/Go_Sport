@@ -323,6 +323,83 @@ namespace WpfMaps.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TokenInfo", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
+    [System.SerializableAttribute()]
+    public partial class TokenInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string KeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfMaps.ServiceReference1.UserInfo SessionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Key {
+            get {
+                return this.KeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KeyField, value) != true)) {
+                    this.KeyField = value;
+                    this.RaisePropertyChanged("Key");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfMaps.ServiceReference1.UserInfo Session {
+            get {
+                return this.SessionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SessionField, value) != true)) {
+                    this.SessionField = value;
+                    this.RaisePropertyChanged("Session");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ActivityInfo", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
     [System.SerializableAttribute()]
     public partial class ActivityInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -613,35 +690,6 @@ namespace WpfMaps.ServiceReference1 {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TokenInfo", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
-    [System.SerializableAttribute()]
-    public partial class TokenInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService")]
     public interface IService {
@@ -654,6 +702,7 @@ namespace WpfMaps.ServiceReference1 {
         System.Threading.Tasks.Task SignUpAsync(WpfMaps.ServiceReference1.UserInfo user, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendCode", ReplyAction="http://tempuri.org/IService/SendCodeResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(WpfMaps.ServiceReference1.IncorrectInputData), Action="http://tempuri.org/IService/SendCodeIncorrectInputDataFault", Name="IncorrectInputData", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
         void SendCode(string Email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendCode", ReplyAction="http://tempuri.org/IService/SendCodeResponse")]
@@ -680,10 +729,10 @@ namespace WpfMaps.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SignIn", ReplyAction="http://tempuri.org/IService/SignInResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(WpfMaps.ServiceReference1.IncorrectInputData), Action="http://tempuri.org/IService/SignInIncorrectInputDataFault", Name="IncorrectInputData", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
-        string SignIn(string Email, string Password);
+        WpfMaps.ServiceReference1.TokenInfo SignIn(string Email, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SignIn", ReplyAction="http://tempuri.org/IService/SignInResponse")]
-        System.Threading.Tasks.Task<string> SignInAsync(string Email, string Password);
+        System.Threading.Tasks.Task<WpfMaps.ServiceReference1.TokenInfo> SignInAsync(string Email, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreateActivity", ReplyAction="http://tempuri.org/IService/CreateActivityResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(WpfMaps.ServiceReference1.IncorrectInputData), Action="http://tempuri.org/IService/CreateActivityIncorrectInputDataFault", Name="IncorrectInputData", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
@@ -778,11 +827,11 @@ namespace WpfMaps.ServiceReference1 {
             return base.Channel.GetListCitiesAsync();
         }
         
-        public string SignIn(string Email, string Password) {
+        public WpfMaps.ServiceReference1.TokenInfo SignIn(string Email, string Password) {
             return base.Channel.SignIn(Email, Password);
         }
         
-        public System.Threading.Tasks.Task<string> SignInAsync(string Email, string Password) {
+        public System.Threading.Tasks.Task<WpfMaps.ServiceReference1.TokenInfo> SignInAsync(string Email, string Password) {
             return base.Channel.SignInAsync(Email, Password);
         }
         

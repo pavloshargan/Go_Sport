@@ -178,6 +178,9 @@
     <None Include="Connected Services\ServiceReference1\WpfMaps.ServiceReference1.CountryInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ServiceReference1\WpfMaps.ServiceReference1.TokenInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

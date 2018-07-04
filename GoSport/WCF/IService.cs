@@ -10,10 +10,10 @@ namespace WCF
     [ServiceContract]
     public interface IService
     {
-        [OperationContract]
         [FaultContract(typeof(IncorrectInputData))]
+        [OperationContract]
         void SignUp(UserInfo user, string Password);
-       
+        [FaultContract(typeof(IncorrectInputData))]
         [OperationContract]
         void SendCode(string Email);
         [OperationContract]
@@ -25,7 +25,7 @@ namespace WCF
         List<CityInfo> GetListCities();
         [OperationContract]
         [FaultContract(typeof(IncorrectInputData))]
-        string SignIn(string Email, string Password);
+        TokenInfo SignIn(string Email, string Password);
         [OperationContract]
         [FaultContract(typeof(IncorrectInputData))]
         void CreateActivity(ActivityInfo activity, TokenInfo token);
@@ -45,8 +45,11 @@ namespace WCF
     [DataContract]
     public class TokenInfo
     {
-        public virtual UserInfo Session { get; set; }
+        [DataMember]
+        public  UserInfo Session { get; set; }
+        [DataMember]
         public string Key { get; set; }
+        [DataMember]
         public DateTime Date { get; set; }
     }
 

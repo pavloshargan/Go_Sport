@@ -53,24 +53,23 @@
 
         <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="60,18,60,17" Height="42">
             <materialDesign:PackIcon Kind="Account" Foreground="White" VerticalAlignment="Center" />
-            <TextBox
+            <TextBox Name="txtEmail"
                materialDesign:HintAssist.Hint="Enter Login"
                 FontSize="17"
                
                 Foreground="White" VerticalContentAlignment="Center"
-                Name="Emailbox" Width="310" Margin="0,5">
+                Width="310" Margin="0,5">
                 
             </TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="2"  Orientation="Horizontal" Margin="60,18,60,17" Height="42">
             <materialDesign:PackIcon Kind="Key" Foreground="White" VerticalAlignment="Center" />
-            <PasswordBox
+            <PasswordBox Name="txtPassword"
                 materialDesign:HintAssist.Hint="Enter Password"
-                
                 FontSize="17"
                 Foreground="White" VerticalContentAlignment="Center"
-                Name="Passbox" Width="310" Margin="0,5"/>
+                Width="310" Margin="0,5"/>
         </StackPanel>
 
         <Button Click="Submit_Button_Click" Name="Submit_Button" Grid.Row="3" Margin="120,22,120,22">Submit</Button>

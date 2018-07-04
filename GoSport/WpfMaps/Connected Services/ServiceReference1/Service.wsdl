@@ -30,6 +30,9 @@
   <wsdl:message name="IService_SendCode_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendCodeResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_SendCode_IncorrectInputDataFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/WCF" name="detail" element="q2:IncorrectInputData" />
+  </wsdl:message>
   <wsdl:message name="IService_ConfirmEmail_InputMessage">
     <wsdl:part name="parameters" element="tns:ConfirmEmail" />
   </wsdl:message>
@@ -37,7 +40,7 @@
     <wsdl:part name="parameters" element="tns:ConfirmEmailResponse" />
   </wsdl:message>
   <wsdl:message name="IService_ConfirmEmail_IncorrectInputDataFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/WCF" name="detail" element="q2:IncorrectInputData" />
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/WCF" name="detail" element="q3:IncorrectInputData" />
   </wsdl:message>
   <wsdl:message name="IService_GetListCountries_InputMessage">
     <wsdl:part name="parameters" element="tns:GetListCountries" />
@@ -58,7 +61,7 @@
     <wsdl:part name="parameters" element="tns:SignInResponse" />
   </wsdl:message>
   <wsdl:message name="IService_SignIn_IncorrectInputDataFault_FaultMessage">
-    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/WCF" name="detail" element="q3:IncorrectInputData" />
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/WCF" name="detail" element="q4:IncorrectInputData" />
   </wsdl:message>
   <wsdl:message name="IService_CreateActivity_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateActivity" />
@@ -67,7 +70,7 @@
     <wsdl:part name="parameters" element="tns:CreateActivityResponse" />
   </wsdl:message>
   <wsdl:message name="IService_CreateActivity_IncorrectInputDataFault_FaultMessage">
-    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/WCF" name="detail" element="q4:IncorrectInputData" />
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/WCF" name="detail" element="q5:IncorrectInputData" />
   </wsdl:message>
   <wsdl:message name="IService_GetAllActivities_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllActivities" />
@@ -96,6 +99,7 @@
     <wsdl:operation name="SendCode">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/SendCode" message="tns:IService_SendCode_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/SendCodeResponse" message="tns:IService_SendCode_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService/SendCodeIncorrectInputDataFault" name="IncorrectInputDataFault" message="tns:IService_SendCode_IncorrectInputDataFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ConfirmEmail">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/ConfirmEmail" message="tns:IService_ConfirmEmail_InputMessage" />
@@ -156,6 +160,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="IncorrectInputDataFault">
+        <soap:fault use="literal" name="IncorrectInputDataFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ConfirmEmail">
       <soap:operation soapAction="http://tempuri.org/IService/ConfirmEmail" style="document" />
