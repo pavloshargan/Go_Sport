@@ -33,7 +33,15 @@ namespace WCF
         List<ActivityInfo> GetAllActivities();
         [OperationContract]
         List<ActivityInfo> GetMyActivities(TokenInfo token);
+
+        [OperationContract]
+        List<string> GetActivityTypes();
+
+
+
     }
+
+
     [DataContract]
     public class TokenInfo
     {
@@ -42,7 +50,8 @@ namespace WCF
         public DateTime Date { get; set; }
     }
 
-        [DataContract]
+
+    [DataContract]
     public class IncorrectInputData
     {
         [DataMember]
@@ -50,6 +59,8 @@ namespace WCF
         [DataMember]
         public string Description { get; set; }
     }
+
+
     [DataContract]
     public class UserInfo
     {
@@ -66,6 +77,8 @@ namespace WCF
         [DataMember]
         public CityInfo City { get; set; }
     }
+
+
     [DataContract]
     public class CountryInfo
     {
@@ -78,6 +91,8 @@ namespace WCF
         [DataMember]
         public ICollection<CityInfo> CityInfos { get; set; }
     }
+
+
     [DataContract]
     public class CityInfo
     {
@@ -87,6 +102,8 @@ namespace WCF
         public CountryInfo CountryInfo { get; set; }
 
     }
+
+
     [DataContract]
     public class ImageInfo
     {
@@ -95,6 +112,7 @@ namespace WCF
         [DataMember]
         public ActivityInfo Activity { get; set; }
     }
+
 
     [DataContract]
     public class ActivityInfo
@@ -116,6 +134,7 @@ namespace WCF
         }
     }
 
+
     [DataContract]
     public class RouteInfo
     {
@@ -128,6 +147,8 @@ namespace WCF
             Points = new List<PointInfo>();
         }
     }
+
+
     [DataContract]
     public class PointInfo
     {
@@ -135,7 +156,13 @@ namespace WCF
         public decimal Longitude { get; set; }
         [DataMember]
         public decimal Latitude { get; set; }
+        
     }
+
+
+
+
+
 
 
 }

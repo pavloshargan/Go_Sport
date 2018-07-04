@@ -8,12 +8,17 @@ namespace WCF
 {
     public static class ActivityTypeConverter
     {
-        public static ActivityType ToActivityType( string ActivityType)
+        public static ActivityType ToActivityType(string ActivityType)
         {
             using (DataModel context = new DataModel())
             {
                 return context.ActivityTypes.FirstOrDefault(x => x.Name == ActivityType);
             }
         }
+
+
+
+
+
     }
 }

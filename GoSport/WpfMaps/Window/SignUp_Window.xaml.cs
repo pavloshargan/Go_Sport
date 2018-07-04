@@ -37,7 +37,7 @@ namespace WpfMaps
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CountriesBox.ItemsSource = service.GetListCountries();
-            CitiesBox.ItemsSource = service.GetListCities();
+            //CitiesBox.ItemsSource = service.GetListCities();
         }
 
         private void Button_Click_Submit(object sender, RoutedEventArgs e)

@@ -26,7 +26,8 @@
         <Rectangle Fill="White" Grid.RowSpan="5" Grid.ColumnSpan="3"></Rectangle>
 
         <Label FontSize="30" VerticalAlignment="Center" Margin="0,0,10,75">Activities</Label>
-        <ComboBox Name="Sport_ComboBox" Grid.Row="1" materialDesign:HintAssist.Hint="Sport" Margin="10,10" ></ComboBox>
+        <ComboBox Name="Sport_ComboBox" Grid.Row="1" materialDesign:HintAssist.Hint="Sport" Margin="10,10" 
+                  ></ComboBox>
         
         <DatePicker Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Enter Date" Margin="10" ></DatePicker>
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="2" Height="28" Margin="10,12,10,0"></materialDesign:TimePicker>

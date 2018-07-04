@@ -164,6 +164,24 @@ namespace WCF
             }
             return rez;
         }
-      //  public List<>
+
+        public List<string> GetActivityTypes()
+        {
+            List<string> types = new List<string>();
+            foreach(ActivityType a in context.ActivityTypes)
+            {
+                types.Add(a.Name);
+            }
+            return types;
+        }
+
+
+
+
+
+
+
+
+
     }
 }

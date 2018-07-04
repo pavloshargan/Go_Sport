@@ -12,6 +12,8 @@ select * from Tokens
 
 select * from ActivityTypes
 
-
 select * from Users
+
+select * from Activities
+
 
