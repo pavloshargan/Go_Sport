@@ -41,13 +41,21 @@ namespace WpfMaps
 
         private void Button_Click_Submit(object sender, RoutedEventArgs e)
         {
+           
             ConfirmEmail_Window window = new ConfirmEmail_Window();
-            window.ShowDialog();
+            window.Show();
+            this.Close();
         }
 
         private void CountriesBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CitiesBox.ItemsSource = (CountriesBox.SelectedItem as CountryInfo).CityInfos;
         }
+
+
+
+
+
+
     }
 }

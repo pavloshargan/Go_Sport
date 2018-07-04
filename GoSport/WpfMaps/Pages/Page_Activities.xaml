@@ -31,7 +31,7 @@
         
         <DatePicker Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Enter Date" Margin="10" ></DatePicker>
         <materialDesign:TimePicker Grid.Row="1" Grid.Column="2" Height="28" Margin="10,12,10,0"></materialDesign:TimePicker>
-
+        <Rectangle  Fill="Black" Height="2" Grid.Row="2" Grid.ColumnSpan="3" Margin="39,10,41,113"></Rectangle>
 
 
     </Grid>

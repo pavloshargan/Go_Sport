@@ -28,5 +28,9 @@ namespace WpfMaps
         {
             this.Close();
         }
+
+
+
+
     }
 }
