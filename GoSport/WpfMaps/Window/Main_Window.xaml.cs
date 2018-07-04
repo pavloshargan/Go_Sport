@@ -20,8 +20,8 @@ namespace WpfMaps
     public partial class Main_Window : Window
     {
         private ServiceClient service;
-        private TokenInfo CurrentSession;
-        public Main_Window(TokenInfo token)
+        
+        public Main_Window()
         {
             InitializeComponent();
             UserName_Block.Text = CurrentSession.TokenInfo.Session.Firstname;

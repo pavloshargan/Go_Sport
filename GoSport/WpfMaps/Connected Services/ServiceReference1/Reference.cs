@@ -15,83 +15,6 @@ namespace WpfMaps.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TokenInfo", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
-    [System.SerializableAttribute()]
-    public partial class TokenInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime DateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string KeyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfMaps.ServiceReference1.UserInfo SessionField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Date {
-            get {
-                return this.DateField;
-            }
-            set {
-                if ((this.DateField.Equals(value) != true)) {
-                    this.DateField = value;
-                    this.RaisePropertyChanged("Date");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Key {
-            get {
-                return this.KeyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.KeyField, value) != true)) {
-                    this.KeyField = value;
-                    this.RaisePropertyChanged("Key");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfMaps.ServiceReference1.UserInfo Session {
-            get {
-                return this.SessionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SessionField, value) != true)) {
-                    this.SessionField = value;
-                    this.RaisePropertyChanged("Session");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserInfo", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
     [System.SerializableAttribute()]
     public partial class UserInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -771,12 +694,6 @@ namespace WpfMaps.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService")]
     public interface IService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Authentification", ReplyAction="http://tempuri.org/IService/AuthentificationResponse")]
-        WpfMaps.ServiceReference1.TokenInfo Authentification(string login, string pass);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Authentification", ReplyAction="http://tempuri.org/IService/AuthentificationResponse")]
-        System.Threading.Tasks.Task<WpfMaps.ServiceReference1.TokenInfo> AuthentificationAsync(string login, string pass);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SignUp", ReplyAction="http://tempuri.org/IService/SignUpResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(WpfMaps.ServiceReference1.IncorrectInputData), Action="http://tempuri.org/IService/SignUpIncorrectInputDataFault", Name="IncorrectInputData", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
         void SignUp(WpfMaps.ServiceReference1.UserInfo user, string Password);
@@ -868,14 +785,6 @@ namespace WpfMaps.ServiceReference1 {
         
         public ServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        public WpfMaps.ServiceReference1.TokenInfo Authentification(string login, string pass) {
-            return base.Channel.Authentification(login, pass);
-        }
-        
-        public System.Threading.Tasks.Task<WpfMaps.ServiceReference1.TokenInfo> AuthentificationAsync(string login, string pass) {
-            return base.Channel.AuthentificationAsync(login, pass);
         }
         
         public void SignUp(WpfMaps.ServiceReference1.UserInfo user, string Password) {

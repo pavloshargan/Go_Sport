@@ -17,6 +17,8 @@ namespace WCF
 
 
         private int CurrentSessionId;
+
+
         public void SignUp(UserInfo user, string Password)
         {
             if (context.Users.Any(x => x.Login == user.Login))
@@ -57,6 +59,9 @@ namespace WCF
                 throw new FaultException<IncorrectInputData>(f);
             }
         }
+
+
+
         public void SendCode(string Email)
         {
             Random random = new Random();
@@ -133,12 +138,16 @@ namespace WCF
             if (context.Users.Any(x => x.Login == Login && x.Password == Password))
             {
                 User CurrentSession = context.Users.FirstOrDefault(x => x.Login == Login && x.Password == Password);
-                Random random = new Random();
-                string key = random.Next(100000, 999999).ToString();
-                Token token = context.Tokens.FirstOrDefault(x => x.Session.Login == CurrentSession.Login);
-                token.Key = key;
-                token.Date = DateTime.Now;
-                context.SaveChanges();
+                //Random random = new Random();
+                //string key = random.Next(100000, 999999).ToString();
+                //Token token = context.Tokens.FirstOrDefault(x => x.Session.Login == CurrentSession.Login);
+                //token.Key = key;
+                //token.Date = DateTime.Now;
+                //context.SaveChanges();
+
+                Token token = new Token();
+                token = context.Tokens.FirstOrDefault(x => x.Session.Login == CurrentSession.Login);
+
                 return TokenConverter.ToTokenInfo(token);
             }
             else
@@ -200,22 +209,22 @@ namespace WCF
             return types;
         }
 
-        public TokenInfo Authentification(string login, string pass)
-        {
-            TokenInfo k=new TokenInfo();
-            if(context.Users.Any(x=>x.Login==login&&x.Password==pass))
-            {
-                //context.Users.FirstOrDefault(x => x.Login == login && x.Password == pass).
-                Token t= context.Tokens.FirstOrDefault(x => x.Session.Email == context.Users.FirstOrDefault(y => y.Login == login && y.Password == pass).Email);
-                k.Key = t.Key;
-                k.Date = t.Date;
-                k.Session = UserConverter.ToUserInfo(t.Session);
-            }
-            else
-            {
-                k = null;
-            }
-            return k;
-        }
+        //public TokenInfo Authentification(string login, string pass)
+        //{
+        //    TokenInfo k=new TokenInfo();
+        //    if(context.Users.Any(x=>x.Login==login&&x.Password==pass))
+        //    {
+        //        //context.Users.FirstOrDefault(x => x.Login == login && x.Password == pass).
+        //        Token t= context.Tokens.FirstOrDefault(x => x.Session.Email == context.Users.FirstOrDefault(y => y.Login == login && y.Password == pass).Email);
+        //        k.Key = t.Key;
+        //        k.Date = t.Date;
+        //        k.Session = UserConverter.ToUserInfo(t.Session);
+        //    }
+        //    else
+        //    {
+        //        k = null;
+        //    }
+        //    return k;
+        //}
     }
 }
