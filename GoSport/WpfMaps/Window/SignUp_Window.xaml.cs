@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -41,11 +42,23 @@ namespace WpfMaps
 
         private void Button_Click_Submit(object sender, RoutedEventArgs e)
         {
+            UserInfo new_user = new UserInfo();
+            new_user.Firstname = txtFirstName.Text;
+            new_user.LastName = txtLastName.Text;
+            new_user.Login = txtLogin.Text;
+            new_user.Phone = txtPhone.Text;
+            new_user.City = new CityInfo() { Name = CitiesBox.SelectedItem.ToString()};
+            try
+            {
+                service.SignUp(new_user, txtPassword.Text);
+            }
+            catch (FaultException<IncorrectInputData> ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
             ConfirmEmail_Window window = new ConfirmEmail_Window();
             window.ShowDialog();
-
-
-
         }
 
         private void CountriesBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

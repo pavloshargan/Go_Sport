@@ -50,6 +50,36 @@
   <wsdl:message name="IService_GetListCities_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetListCitiesResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_SignIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:SignIn" />
+  </wsdl:message>
+  <wsdl:message name="IService_SignIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SignInResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SignIn_IncorrectInputDataFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/WCF" name="detail" element="q3:IncorrectInputData" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateActivity_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateActivity" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateActivity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateActivity_IncorrectInputDataFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/WCF" name="detail" element="q4:IncorrectInputData" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllActivities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllActivities" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllActivities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllActivitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMyActivities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyActivities" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMyActivities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyActivitiesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="SignUp">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/SignUp" message="tns:IService_SignUp_InputMessage" />
@@ -72,6 +102,24 @@
     <wsdl:operation name="GetListCities">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetListCities" message="tns:IService_GetListCities_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetListCitiesResponse" message="tns:IService_GetListCities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SignIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SignIn" message="tns:IService_SignIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SignInResponse" message="tns:IService_SignIn_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService/SignInIncorrectInputDataFault" name="IncorrectInputDataFault" message="tns:IService_SignIn_IncorrectInputDataFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateActivity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateActivity" message="tns:IService_CreateActivity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateActivityResponse" message="tns:IService_CreateActivity_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService/CreateActivityIncorrectInputDataFault" name="IncorrectInputDataFault" message="tns:IService_CreateActivity_IncorrectInputDataFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActivities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetAllActivities" message="tns:IService_GetAllActivities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetAllActivitiesResponse" message="tns:IService_GetAllActivities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyActivities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMyActivities" message="tns:IService_GetMyActivities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMyActivitiesResponse" message="tns:IService_GetMyActivities_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -121,6 +169,48 @@
     </wsdl:operation>
     <wsdl:operation name="GetListCities">
       <soap:operation soapAction="http://tempuri.org/IService/GetListCities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignIn">
+      <soap:operation soapAction="http://tempuri.org/IService/SignIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IncorrectInputDataFault">
+        <soap:fault use="literal" name="IncorrectInputDataFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateActivity">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IncorrectInputDataFault">
+        <soap:fault use="literal" name="IncorrectInputDataFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActivities">
+      <soap:operation soapAction="http://tempuri.org/IService/GetAllActivities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyActivities">
+      <soap:operation soapAction="http://tempuri.org/IService/GetMyActivities" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
