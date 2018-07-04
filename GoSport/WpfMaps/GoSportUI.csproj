@@ -33,7 +33,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BingMapsRESTToolkit, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BingMapsRESTToolkit.1.1.4\lib\net45\BingMapsRESTToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -65,6 +72,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\Setting_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DragPin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Add_Activity_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Home_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -97,6 +116,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="Classes\CurrentSession.cs" />
+    <Compile Include="Pages\Setting_Page.xaml.cs">
+      <DependentUpon>Setting_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DragPin.xaml.cs">
+      <DependentUpon>DragPin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Add_Activity_Page.xaml.cs">
+      <DependentUpon>Add_Activity_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -130,15 +159,8 @@
     <Compile Include="Window\Login_Window.xaml.cs">
       <DependentUpon>Login_Window.xaml</DependentUpon>
     </Compile>
-    <Page Include="Page1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -218,6 +240,34 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\green_pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\red_pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Push-Pin-Transparent-Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\if_94_171453.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\if_push_pin_100893.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\if_editor-flag-notification-glyph_763364.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\pinfinish.png" />
+    <Resource Include="Icons\pistart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\if_map-pin-marker-circle_353397.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\if_Picture13_3289577.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

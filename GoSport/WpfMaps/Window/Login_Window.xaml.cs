@@ -34,17 +34,17 @@ namespace WpfMaps
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
         {
             
-            TokenInfo token;
+            
             try
             {
-                token = service.SignIn(txtEmail.Text, txtPassword.Password);
+                CurrentSession.TokenInfo = service.SignIn(txtEmail.Text, txtPassword.Password);
             }
             catch (FaultException<IncorrectInputData> ex)
             {
                 MessageBox.Show(ex.Detail.Message);
                 return;
             }
-            Main_Window main = new Main_Window(token);
+            Main_Window main = new Main_Window();
             main.Show();
             this.Close();
         }

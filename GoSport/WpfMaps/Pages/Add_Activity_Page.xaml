@@ -1,0 +1,58 @@
+﻿<Page x:Class="WpfMaps.Add_Activity_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfMaps"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="770"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      Title="Add_Activity_Page">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.RowSpan="10" Grid.ColumnSpan="3" Fill="White"></Rectangle>
+
+
+        <Label FontSize="29" >Activity</Label>
+
+
+        <ComboBox Name="Sport_ComboBox" Grid.Row="1" materialDesign:HintAssist.Hint="Sport" Margin="10,10" 
+                  ></ComboBox>
+
+        <DatePicker Name="DateBox" Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Enter Date" Margin="10" ></DatePicker>
+        <materialDesign:TimePicker Name="TimeBox" Grid.Row="1" Grid.Column="2" Height="28" Margin="10,12,10,0"></materialDesign:TimePicker>
+      
+        
+        
+        <Rectangle  Fill="Black" Height="2" Grid.Row="2" Grid.ColumnSpan="3" Margin="39,10,41,113"></Rectangle>
+        
+        
+        
+        <Frame Name="Frame_Map" Margin="10,17,10,0" Grid.Row="2" Grid.RowSpan="7" Grid.ColumnSpan="3"></Frame>
+        
+
+
+        <Button Click="Add_Activity_Click" Content="Add Activity" Grid.Column="2" Margin="10,13,41,10" Grid.Row="9"/>
+
+
+
+    </Grid>
+</Page>

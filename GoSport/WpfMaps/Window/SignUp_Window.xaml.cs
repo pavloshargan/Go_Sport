@@ -35,13 +35,11 @@ namespace WpfMaps
                 
             }
         }
-
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             Login_Window window = new Login_Window();
             window.Show();this.Close();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CountriesBox.ItemsSource = service.GetListCountries();

@@ -151,7 +151,6 @@ namespace WCF
         }
     }
 
-
     [DataContract]
     public class PointInfo
     {
