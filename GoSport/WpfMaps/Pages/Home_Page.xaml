@@ -1,0 +1,61 @@
+﻿<Page x:Class="WpfMaps.Home_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfMaps"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="770"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="Home_Page">
+
+    <Grid>
+        <Rectangle Fill="White"></Rectangle>
+
+
+        <Label FontSize="30" VerticalAlignment="Top" Margin="10,0,655,0" Height="51">Home</Label>
+
+
+        <StackPanel ScrollViewer.VerticalScrollBarVisibility="Visible"  Name="CityStackPanel" Margin="10,56,215,10">
+            <ListView Name="Add_Posts_ListView"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="429"
+                          >
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel  />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListBox.ItemTemplate >
+                    <DataTemplate>
+                        <Grid Height="250" Width="210" Margin="10,0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="60"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Image Margin="10" Source="{Binding Path=Path}"></Image>
+
+                            <Label Grid.Row="1" FontStyle="Oblique" Margin="10,2,148,29">Likes</Label>
+                            <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="10,20,132,10">
+                                <materialDesign:PackIcon Kind="Heart" VerticalAlignment="Center" Foreground="Red" Margin="0,8" />
+                                <TextBlock Name="FirstNameBox"
+                                               VerticalAlignment="Center"
+                                               FontSize="15"
+                                               Width="200" Text="{Binding Path=CountLikes}"/>
+                            </StackPanel>
+
+
+                        </Grid>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+
+            </ListView>
+        </StackPanel>
+
+
+
+
+    </Grid>
+</Page>

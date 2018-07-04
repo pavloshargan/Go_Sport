@@ -1,0 +1,96 @@
+﻿<Page x:Class="WpfMaps.UserInfo_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfMaps"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="770"
+      Title="UserInfo_Page">
+
+    <Page.Resources>
+        <Style x:Key="LabelKey" TargetType="Label" >
+            <Setter Property="FontSize" Value="10"></Setter>
+            <Setter Property="Foreground" Value="#FF3580BF"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+        
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <Rectangle Fill="White" Grid.RowSpan="7" Grid.ColumnSpan="3"   ></Rectangle>
+        <Label FontSize="30" VerticalAlignment="Center" Margin="0,0,10,70">Account</Label>
+
+        <Label Style="{StaticResource LabelKey}" Grid.Row="1" Margin="40,0,148,20">First Name</Label>
+        <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="40,20,40,0">
+            <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Margin="0,8" Width="30"/>
+            <TextBlock Name="FirstNameBox"
+                FontSize="17"
+                Width="155" Text="Igor"/>
+        </StackPanel>
+
+        <Label Style="{StaticResource LabelKey}" Grid.Row="2" Margin="40,0,148,20">Last Name</Label>
+        <StackPanel Grid.Row="2"  Orientation="Horizontal" Margin="40,20,40,0">
+            <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Margin="0,8" Width="30"/>
+            <TextBlock Name="LastNameBox"
+                FontSize="17"
+                Width="158"
+                Text="Klikun"
+                />
+        </StackPanel>
+
+        <Label Style="{StaticResource LabelKey}" Grid.Row="1" Grid.Column="1" Margin="40,0,148,20">Login</Label>
+        <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="40,20,40,0" Grid.Column="1">
+            <materialDesign:PackIcon Kind="Login" VerticalAlignment="Center" Margin="0,8" Width="30"/>
+            <TextBlock
+                Name="LoginBox"
+                FontSize="17"
+                Width="157"
+                Text="klikuni"
+                />
+        </StackPanel>
+
+        <Label Style="{StaticResource LabelKey}" Grid.Row="2" Grid.Column="1" Margin="40,0,148,20">Email</Label>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="40,20,10,0">
+            <materialDesign:PackIcon Kind="Email" VerticalAlignment="Center" Margin="0,8" Width="30" />
+            <TextBlock Name="EmailBox"
+                FontSize="17"
+                Width="187"
+                       Text="klikun2001@gmail.com"
+                       />
+        </StackPanel>
+
+
+        <Label Style="{StaticResource LabelKey}" Grid.Row="1" Grid.Column="2" Margin="40,0,148,20">Phone</Label>
+        <StackPanel Grid.Row="1" Grid.Column="2"  Orientation="Horizontal" Margin="40,20,40,0">
+            <materialDesign:PackIcon Kind="Phone"  VerticalAlignment="Center" Margin="0,8" Width="30"/>
+            <TextBlock
+                Name="PhoneBox"
+                FontSize="17"
+                Width="154"
+                Text="380972365382"
+                />
+        </StackPanel>
+
+
+
+
+
+    </Grid>
+</Page>

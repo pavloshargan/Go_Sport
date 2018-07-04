@@ -59,8 +59,14 @@ namespace WpfMaps
             Main_Frame.Content = new Map_Page();
         }
 
+        private void ButtonUserInfo_Click(object sender, RoutedEventArgs e)
+        {
+            Main_Frame.Content = new UserInfo_Page();
+        }
 
-
-
+        private void listViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Main_Frame.Content = new Home_Page();
+        }
     }
 }

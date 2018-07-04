@@ -65,11 +65,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\Home_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Map_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Page_Activities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserInfo_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,11 +101,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Pages\Home_Page.xaml.cs">
+      <DependentUpon>Home_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Map_Page.xaml.cs">
       <DependentUpon>Map_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Page_Activities.xaml.cs">
       <DependentUpon>Page_Activities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserInfo_Page.xaml.cs">
+      <DependentUpon>UserInfo_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window\ConfirmEmail_Window.xaml.cs">
       <DependentUpon>ConfirmEmail_Window.xaml</DependentUpon>
