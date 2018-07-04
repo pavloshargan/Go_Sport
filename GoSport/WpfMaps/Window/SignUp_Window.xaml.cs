@@ -32,9 +32,17 @@ namespace WpfMaps
                 txtLogin.Text = user.Login;
                 txtEmail.Text = user.Email;
                 txtPhone.Text = user.Phone;
-                CountriesBox.SelectedItem = user.City.CountryInfo.Name;
-                CitiesBox.SelectedItem = user.City.Name;
-                
+                //foreach(CountryInfo c in CountriesBox.Items)
+                //{
+                //    if (c.Name == user.City.CountryInfo.Name)
+                //        CountriesBox.SelectedItem = c;
+                //}
+                //CitiesBox.ItemsSource = (CountriesBox.SelectedItem as CountryInfo).CityInfos;
+                //foreach (CityInfo c in CitiesBox.Items)
+                //{
+                //    if(c.Name==user.City.Name)
+                //    CitiesBox.SelectedItem = c;
+                //}
             }
         }
 
@@ -59,7 +67,8 @@ namespace WpfMaps
             new_user.Email = txtEmail.Text;
             new_user.Login = txtLogin.Text;
             new_user.Phone = txtPhone.Text;
-            new_user.City = new CityInfo() { Name = CitiesBox.SelectedItem.ToString()};
+            //CityInfo selected_city = (CitiesBox.SelectedItem as CityInfo);
+          //  new_user.City = service.GetListCities().FirstOrDefault(x=>x.Name==selected_city.Name&&x.CountryInfo.Name==selected_city.CountryInfo.Name);
             try
             {
                 service.SignUp(new_user, txtPassword.Password);

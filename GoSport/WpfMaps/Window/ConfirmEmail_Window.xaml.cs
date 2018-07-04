@@ -38,7 +38,7 @@ namespace WpfMaps
 
         private void Button_Submit_Click(object sender, RoutedEventArgs e)
         {
-         // client.ConfirmEmail()
+            client.ConfirmEmail(CurrentUser.Email, CodeBox.Text);
         }
 
         
