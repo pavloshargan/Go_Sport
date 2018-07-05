@@ -74,7 +74,7 @@
 
         <Button Click="Submit_Button_Click" Name="Submit_Button" Grid.Row="3" Margin="120,22,120,22">Submit</Button>
         <Rectangle Grid.Row="4" Fill="Gray" Margin="40,0,40,0" Height="1"/>
-        <Label Style="{StaticResource Label_Font}" Grid.Row="4" Foreground="White" Margin="60,44,256,21">Forgot your password?</Label>
+        <Label MouseDown="Forgot_MouseDown" Style="{StaticResource Label_Font}" Grid.Row="4" Foreground="White" Margin="60,44,256,21">Forgot your password?</Label>
         <Label Style="{StaticResource Label_Font}" MouseLeftButtonDown="Label_MouseLeftButtonDown" HorizontalContentAlignment="Center" Grid.Row="4" Foreground="White" Margin="255,44,60,21">Sign Up</Label>
 
         <Button  Name="Button_Close" Click="Button_Close_Click"  Grid.Row="5" Margin="310,30,40,30">Close</Button>

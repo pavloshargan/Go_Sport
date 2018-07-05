@@ -26,8 +26,7 @@ namespace WCF
                 IncorrectInputData fault = new IncorrectInputData();
                 fault.Message = "Enter another login";
                 fault.Description = "Login has been alredy used";
-
-                throw new FaultException<IncorrectInputData>(fault);
+                throw new FaultException<IncorrectInputData>(fault, new FaultReason("Login has been alredy used"));
             }
             if (context.Users.Any(x => x.Email == user.Email))
             {
@@ -156,7 +155,7 @@ namespace WCF
                 IncorrectInputData fault = new IncorrectInputData();
                 fault.Message = "Incorrect login or password!";
                 fault.Description = "Enter another login or password";
-                throw new FaultException<IncorrectInputData>(fault);
+                throw new FaultException<IncorrectInputData>(fault, new FaultReason("Incorrect login or password"));
             }
         }
         public void CreateActivity(ActivityInfo activity, TokenInfo token)
