@@ -27,8 +27,9 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.RowSpan="10" Grid.ColumnSpan="3" Fill="White"></Rectangle>
+        <Rectangle Grid.RowSpan="10" Grid.ColumnSpan="4" Fill="White"></Rectangle>
 
 
         <Label FontSize="29" >Activity</Label>
@@ -39,18 +40,22 @@
 
         <DatePicker Name="DateBox" Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Enter Date" Margin="10" ></DatePicker>
         <materialDesign:TimePicker Name="TimeBox" Grid.Row="1" Grid.Column="2" Height="28" Margin="10,12,10,0"></materialDesign:TimePicker>
-      
+        <ComboBox Name="CityBox" Grid.Row="1" Grid.Column="3" Margin="10,11"
+                  ItemsSource="{Binding Path=CityInfo}"
+                  DisplayMemberPath="Name"
+                  materialDesign:HintAssist.Hint="Enter City"
+                  ></ComboBox>
         
         
         <Rectangle  Fill="Black" Height="2" Grid.Row="2" Grid.ColumnSpan="3" Margin="39,10,41,113"></Rectangle>
         
         
         
-        <Frame Name="Frame_Map" Margin="10,17,10,0" Grid.Row="2" Grid.RowSpan="7" Grid.ColumnSpan="3"></Frame>
+        <Frame Name="Frame_Map" Margin="10,17,10,0" Grid.Row="2" Grid.RowSpan="7" Grid.ColumnSpan="4"></Frame>
         
 
 
-        <Button Click="Add_Activity_Click" Content="Add Activity" Grid.Column="2" Margin="10,13,41,10" Grid.Row="9"/>
+        <Button Click="Add_Activity_Click" Content="Add Activity" Grid.Column="3" Margin="10,13,41,10" Grid.Row="9"/>
 
 
 

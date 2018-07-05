@@ -77,7 +77,7 @@
   <xs:element name="ImageInfo" nillable="true" type="tns:ImageInfo" />
   <xs:complexType name="RouteInfo">
     <xs:sequence>
-      <xs:element minOccurs="0" name="City" nillable="true" type="tns:CityInfo" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Points" nillable="true" type="tns:ArrayOfPointInfo" />
     </xs:sequence>
   </xs:complexType>

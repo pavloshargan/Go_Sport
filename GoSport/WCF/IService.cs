@@ -18,7 +18,7 @@ namespace WCF
         void SendCode(string Email);
         [OperationContract]
         [FaultContract(typeof(IncorrectInputData))]
-        string ConfirmEmail(string Email, string code);
+        bool ConfirmEmail(string Email, string code);
         [OperationContract]
         List<CountryInfo> GetListCountries();
         [OperationContract]
@@ -127,7 +127,7 @@ namespace WCF
         [DataMember]
         public DateTime Date { get; set; }
         [DataMember]
-        public ICollection <UserInfo> Users { get; set; }
+        public List<UserInfo> Users { get; set; }
         [DataMember]
         public ICollection<ImageInfo> ActivityImages { get; set; }
         public ActivityInfo()
@@ -135,6 +135,7 @@ namespace WCF
             Users = new List<UserInfo>();
             ActivityImages = new List<ImageInfo>();
         }
+      
     }
 
 
@@ -142,13 +143,15 @@ namespace WCF
     public class RouteInfo
     {
         [DataMember]
-        public CityInfo City { get; set; }
+        public string City { get; set; }
         [DataMember]
         public ICollection<PointInfo> Points { get; set; }
         public RouteInfo()
         {
             Points = new List<PointInfo>();
         }
+      
+       
     }
 
     [DataContract]

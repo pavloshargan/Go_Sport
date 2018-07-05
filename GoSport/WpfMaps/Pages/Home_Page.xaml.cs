@@ -24,10 +24,10 @@ namespace WpfMaps
         public Home_Page()
         {
             InitializeComponent();
-            kartinkis.Add(new Kartinki() { Path = @"\Icons\olimpycs_38_icon-icons.com_68602.png", CountLikes = 20 });
-            kartinkis.Add(new Kartinki() { Path = @"\Icons\olimpycs_38_icon-icons.com_68602.png", CountLikes = 200 });
-            kartinkis.Add(new Kartinki() { Path = @"\Icons\olimpycs_38_icon-icons.com_68602.png", CountLikes = 2000 });
-            kartinkis.Add(new Kartinki() { Path = @"\Icons\olimpycs_38_icon-icons.com_68602.png", CountLikes = 20000 });
+            kartinkis.Add(new Kartinki() { Path = @"\Icons\images.jpg", CountLikes = 20,Name= "Vlad Churko" });
+            kartinkis.Add(new Kartinki() { Path = @"\Icons\work-and-travel-28.jpg", CountLikes = 200, Name = "Misha Dundiuk" });
+            kartinkis.Add(new Kartinki() { Path = @"\Icons\Explore-the-worlds.jpg", CountLikes = 2000, Name = "Misha Dundiuk" });
+            kartinkis.Add(new Kartinki() { Path = @"\Icons\pexels-photo-672358.jpeg", CountLikes = 20000, Name = "Vlad Churko" });
             Add_Posts_ListView.ItemsSource = kartinkis;
 
         }
@@ -38,7 +38,6 @@ namespace WpfMaps
     {
         public string Path { get; set; }
         public int CountLikes { get; set; }
-
-
+        public string Name { get; set; } 
     }
 }

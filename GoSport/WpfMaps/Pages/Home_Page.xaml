@@ -34,8 +34,10 @@
                                 <RowDefinition Height="60"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Image Margin="10" Source="{Binding Path=Path}"></Image>
-
                             <Label Grid.Row="1" FontStyle="Oblique" Margin="10,2,148,29">Likes</Label>
+                            <TextBlock Name="User_NameBox"
+                                               VerticalAlignment="Center"
+                                               FontSize="15" Text="{Binding Path=Name}" Margin="62,2,0,38" Grid.Row="1"/>
                             <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="10,20,132,10">
                                 <materialDesign:PackIcon Kind="Heart" VerticalAlignment="Center" Foreground="Red" Margin="0,8" />
                                 <TextBlock Name="FirstNameBox"
@@ -53,7 +55,7 @@
 
             </ListView>
         </StackPanel>
-
+       
 
 
 

@@ -21,9 +21,9 @@ namespace WpfMaps
     /// </summary>
     public partial class Map_Page : Page
     {
-        public DragPin Get_Start_DragPin { get; private set; }
-        public DragPin Get_End_DragPin { get; private set; }
-        public List<DragPin> Get_Other_DragPins { get; } = new List<DragPin>();
+        public DragPin Get_Start_DragPin { get;  set; }
+        public DragPin Get_End_DragPin { get;  set; }
+        public List<DragPin> Get_Other_DragPins { get; set; } = new List<DragPin>();
 
 
 
@@ -47,42 +47,9 @@ namespace WpfMaps
                 //Create a layer for Route data.
                 RouteLayer = new MapLayer();
                 MyMap.Children.Add(RouteLayer);
-
-                #region
-                //Create two draggable pushpins to between.
-
-                //Create the start pushpin.
-                //StartPin = new DragPin(this.MyMap)
-                //{
-                //    Location = new Location(47.614898, -122.193604),
-                //    ImageSource = GetImageSource("/Icons/if_map-pin-marker-circle_353397.png")
-                //};
-
-                ////Add a drag event to the start pushpin.
-                //StartPin.DragEnd += UpdateRoute;
-
-                ////Add the start pushpin to the map.
-                //MyMap.Children.Add(StartPin);
-
-                ////Create the end pushpin.
-                //EndPin = new DragPin(this.MyMap)
-                //{
-                //    Location = new Location(47.619819, -122.348862),
-                //    ImageSource = GetImageSource("/Icons/if_map-pin-marker-circle_353397.png")
-                //};
-
-                ////Add a drag event to the end pushpin.
-                //EndPin.DragEnd += UpdateRoute;
-
-                ////Add the end pushpin to the map.
-                //MyMap.Children.Add(EndPin);
-
-                ////Calculate the initial route between the two pins.
-                //UpdateRoute(null);
-                #endregion
             });
         }
-        private async void UpdateRoute(Location loc, DragPin fisrt, DragPin sec)
+        public async void UpdateRoute(Location loc, DragPin fisrt, DragPin sec)
         {
             RouteLayer.Children.Clear();
             polylines.Clear();

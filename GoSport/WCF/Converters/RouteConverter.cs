@@ -13,18 +13,20 @@ namespace WCF
             Route rez = new Route();
             using (DataModel context = new DataModel())
             {
-                rez.City = CityConverter.ToCity(route.City);
+                rez.City = context.Cities.First(x => x.Name == route.City);
+
                 foreach(PointInfo p in route.Points)
                 {
-                    rez.Points.Add(PointConverter.ToPoint(p));
+                    rez.Points.Add(new Point() { Latitude=p.Latitude,Longitude=p.Longitude});
                 }
             }
             return rez;
         }
+
         public static RouteInfo ToRouteInfo(Route route)
         {
             RouteInfo rez = new RouteInfo();
-            rez.City = CityConverter.ToCityInfo(route.City);
+            rez.City =route.City.Name;
             foreach (Point p in route.Points)
             {
                 rez.Points.Add(PointConverter.ToPointInfo(p));

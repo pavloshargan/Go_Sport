@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using DAL;
 namespace WCF
 {
-    
+
     public class Service : IService
     {
         private DataModel context = new DataModel();
@@ -26,23 +26,23 @@ namespace WCF
                 IncorrectInputData fault = new IncorrectInputData();
                 fault.Message = "Enter another login";
                 fault.Description = "Login has been alredy used";
-                
+
                 throw new FaultException<IncorrectInputData>(fault);
             }
             if (context.Users.Any(x => x.Email == user.Email))
             {
                 IncorrectInputData fault = new IncorrectInputData();
-  
+
                 throw new FaultException<IncorrectInputData>(fault, new FaultReason("Email has been alredy used"));
             }
-            if(false)
+            if (false)
             {
                 IncorrectInputData fault = new IncorrectInputData();
                 fault.Message = "Incorrect Email";
                 fault.Description = "Enter enother e-mail";
                 throw new FaultException<IncorrectInputData>(fault);
             }
-                try
+            try
             {
                 //if (context.UnconfirmedUsers.Any(x => x.Email == user.Email))
                 //{
@@ -79,9 +79,9 @@ namespace WCF
             smtpClient.EnableSsl = true;
             smtpClient.Send(message);
         }
-        public string ConfirmEmail(string Email, string code)
+        public bool ConfirmEmail(string Email, string code)
         {
-            UnconfirmedUser unconfirmedUser = context.UnconfirmedUsers.FirstOrDefault(x => x.Email == Email&&x.Code==code);
+            UnconfirmedUser unconfirmedUser = context.UnconfirmedUsers.FirstOrDefault(x => x.Email == Email && x.Code == code);
             if (code == unconfirmedUser.Code)
             {
                 //context.Users.Add(UnconfirmedUserConverter.ToUser(unconfirmedUser));
@@ -103,7 +103,7 @@ namespace WCF
                 context.Tokens.Add(new Token() { Session = a, Key = key, Date = DateTime.Now });
 
                 context.SaveChanges();
-                return key;
+                return true;
             }
             else
             {
@@ -111,10 +111,11 @@ namespace WCF
                 fault.Message = "Wrong code!";
                 fault.Description = "The code you have entered is invalid.";
                 throw new FaultException<IncorrectInputData>(fault);
+                
             }
         }
 
-       
+
         public List<CountryInfo> GetListCountries()
         {
             List<CountryInfo> countries = new List<CountryInfo>();
@@ -160,9 +161,9 @@ namespace WCF
         }
         public void CreateActivity(ActivityInfo activity, TokenInfo token)
         {
-         //   User current_user
+            //   User current_user
             //if(token.Key==)
-            if (activity.Date < DateTime.Now)
+            if (activity.Date.Day < DateTime.Now.Day|| activity.Date.Month < DateTime.Now.Month|| activity.Date.Year < DateTime.Now.Year)
             {
                 IncorrectInputData fault = new IncorrectInputData();
                 fault.Message = "Incorrect Date";
@@ -170,30 +171,39 @@ namespace WCF
                 throw new FaultException<IncorrectInputData>(fault);
             }
             Activity new_activity = new Activity();
-            foreach (ImageInfo im in activity.ActivityImages)
+            if (activity.ActivityImages != null)
             {
-                new_activity.ActivityImages.Add(ImageConverter.ToImage(im));
+                foreach (ImageInfo im in activity.ActivityImages)
+                {
+                    new_activity.ActivityImages.Add(ImageConverter.ToImage(im));
+                }
             }
             new_activity.Date = activity.Date;
+
+
             new_activity.Route = RouteConverter.ToRoute(activity.Route);
             new_activity.Type = ActivityTypeConverter.ToActivityType(activity.Type);
             new_activity.Users.Add(UserConverter.ToUser(token.Session));
+
+
             context.Activities.Add(new_activity);
             context.SaveChanges();
         }
         public List<ActivityInfo> GetAllActivities()
         {
             List<ActivityInfo> rez = new List<ActivityInfo>();
-            foreach(Activity act in context.Activities)
+            foreach (Activity act in context.Activities)
             {
                 rez.Add(ActivityConverter.ToActivityInfo(act));
             }
             return rez;
+
+
         }
         public List<ActivityInfo> GetMyActivities(TokenInfo token)
         {
             List<ActivityInfo> rez = new List<ActivityInfo>();
-            foreach (Activity act in context.Activities.Where(x=>x.Users.First()==TokenConverter.ToToken(token).Session))
+            foreach (Activity act in context.Activities.Where(x => x.Users.First() == TokenConverter.ToToken(token).Session))
             {
                 rez.Add(ActivityConverter.ToActivityInfo(act));
             }
@@ -202,7 +212,7 @@ namespace WCF
         public List<string> GetActivityTypes()
         {
             List<string> types = new List<string>();
-            foreach(ActivityType a in context.ActivityTypes)
+            foreach (ActivityType a in context.ActivityTypes)
             {
                 types.Add(a.Name);
             }

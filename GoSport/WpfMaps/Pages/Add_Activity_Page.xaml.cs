@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfMaps.ServiceReference1;
 using Microsoft.Maps.MapControl.WPF;
+using System.ServiceModel;
+
 namespace WpfMaps
 {
     /// <summary>
@@ -27,20 +29,18 @@ namespace WpfMaps
         public Add_Activity_Page()
         {
             InitializeComponent();
-           
+
             Sport_ComboBox.ItemsSource = service.GetActivityTypes();
             Frame_Map.Content = map_Page;
+            CityBox.ItemsSource = service.GetListCities();
         }
-
         private void Add_Activity_Click(object sender, RoutedEventArgs e)
         {
             ActivityInfo activity = new ActivityInfo();
             activity.Date = DateBox.SelectedDate.Value;
             activity.Date = TimeBox.SelectedTime.Value;
-            
             activity.Type = Sport_ComboBox.SelectedItem.ToString();
 
-          
             List<PointInfo> points = new List<PointInfo>();
             try
             {
@@ -65,20 +65,22 @@ namespace WpfMaps
 
                 RouteInfo route = new RouteInfo();
                 route.Points = points.ToArray();
-  
+          
+                route.City = (CityBox.SelectedItem as CityInfo).Name;
+      
                 activity.Route = route;
+
                 MessageBox.Show(activity.Date.ToString() + "  " + activity.Type);
-                //service.CreateActivity(activity,new TokenInfo() { })
-
-
+                
+                service.CreateActivity(activity, CurrentSession.TokenInfo);
 
             }
-            catch ( Exception ex )
+            catch (FaultException<IncorrectInputData> ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Detail.Message);
                 //throw;
             }
-         
+
 
 
 

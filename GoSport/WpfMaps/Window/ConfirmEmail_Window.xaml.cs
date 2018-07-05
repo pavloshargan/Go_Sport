@@ -41,7 +41,15 @@ namespace WpfMaps
         {
             try
             {
-                client.ConfirmEmail(CurrentUser.Email, CodeBox.Text);
+                bool a= client.ConfirmEmail(CurrentUser.Email, CodeBox.Text);
+                if (a)
+                {
+                    MessageBox.Show("Done");
+                    Login_Window window = new Login_Window();
+                    window.Show();this.Close();
+
+                }
+
             }
             catch (Exception ex)
             {

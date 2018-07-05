@@ -517,7 +517,7 @@ namespace WpfMaps.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfMaps.ServiceReference1.CityInfo CityField;
+        private string CityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfMaps.ServiceReference1.PointInfo[] PointsField;
@@ -533,7 +533,7 @@ namespace WpfMaps.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfMaps.ServiceReference1.CityInfo City {
+        public string City {
             get {
                 return this.CityField;
             }
@@ -710,10 +710,10 @@ namespace WpfMaps.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ConfirmEmail", ReplyAction="http://tempuri.org/IService/ConfirmEmailResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(WpfMaps.ServiceReference1.IncorrectInputData), Action="http://tempuri.org/IService/ConfirmEmailIncorrectInputDataFault", Name="IncorrectInputData", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
-        string ConfirmEmail(string Email, string code);
+        bool ConfirmEmail(string Email, string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ConfirmEmail", ReplyAction="http://tempuri.org/IService/ConfirmEmailResponse")]
-        System.Threading.Tasks.Task<string> ConfirmEmailAsync(string Email, string code);
+        System.Threading.Tasks.Task<bool> ConfirmEmailAsync(string Email, string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetListCountries", ReplyAction="http://tempuri.org/IService/GetListCountriesResponse")]
         WpfMaps.ServiceReference1.CountryInfo[] GetListCountries();
@@ -803,11 +803,11 @@ namespace WpfMaps.ServiceReference1 {
             return base.Channel.SendCodeAsync(Email);
         }
         
-        public string ConfirmEmail(string Email, string code) {
+        public bool ConfirmEmail(string Email, string code) {
             return base.Channel.ConfirmEmail(Email, code);
         }
         
-        public System.Threading.Tasks.Task<string> ConfirmEmailAsync(string Email, string code) {
+        public System.Threading.Tasks.Task<bool> ConfirmEmailAsync(string Email, string code) {
             return base.Channel.ConfirmEmailAsync(Email, code);
         }
         

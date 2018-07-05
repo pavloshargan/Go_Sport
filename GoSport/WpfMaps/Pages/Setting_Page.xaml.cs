@@ -25,9 +25,13 @@ namespace WpfMaps
         {
             InitializeComponent();
             CountryBox.ItemsSource = service.GetListCountries();
+            txtFirstName.Text = CurrentSession.TokenInfo.Session.Firstname;
+            txtLastName.Text = CurrentSession.TokenInfo.Session.LastName;
+            txtLogin.Text = CurrentSession.TokenInfo.Session.Login;
+            txtPhone.Text = CurrentSession.TokenInfo.Session.Phone;
+            txtEmail.Text = CurrentSession.TokenInfo.Session.Email;
 
-
-
+            CountryBox.SelectedItem = CurrentSession.TokenInfo.Session.City.CountryInfo;
 
 
         }

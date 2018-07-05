@@ -19,6 +19,7 @@
             <Setter Property="Height" Value="30"></Setter>
             <Setter Property="Width" Value="300"></Setter>
             <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="FontSize" Value="17"></Setter>
         </Style>
 
         <Style x:Key="ComcoBox_key" TargetType="ComboBox">
@@ -46,7 +47,7 @@
                 <Label Style="{StaticResource Label_Key}">Login</Label>
                 <Label Style="{StaticResource Label_Key}">Phone</Label>
                 <Label Style="{StaticResource Label_Key}">Email</Label>
-                <Label Style="{StaticResource Label_Key}">Password</Label>
+                <Label Style="{StaticResource Label_Key}"></Label>
                 <Label Style="{StaticResource Label_Key}">Country</Label>
                 <Label Style="{StaticResource Label_Key}">City</Label>
             </StackPanel>
@@ -68,7 +69,6 @@
                 <TextBox Grid.Row="2" Name="txtLogin" Style="{StaticResource txtBox_Key}"></TextBox>
                 <TextBox Grid.Row="3" Name="txtPhone" Style="{StaticResource txtBox_Key}"></TextBox>
                 <TextBox Grid.Row="4" Name="txtEmail" Style="{StaticResource txtBox_Key}"></TextBox>
-                <TextBox Grid.Row="5" Name="txtPassword" Style="{StaticResource txtBox_Key}"></TextBox>
                 <ComboBox  Grid.Row="6" Name="CountryBox" Style="{StaticResource ComcoBox_key}"
                            ItemsSource="{Binding Path=CountryInfo}"
                            DisplayMemberPath="Name"

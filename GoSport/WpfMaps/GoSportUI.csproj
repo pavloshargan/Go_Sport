@@ -269,5 +269,11 @@
   <ItemGroup>
     <Resource Include="Icons\if_Picture13_3289577.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Explore-the-worlds.jpg" />
+    <Resource Include="Icons\images.jpg" />
+    <Resource Include="Icons\pexels-photo-672358.jpeg" />
+    <Resource Include="Icons\work-and-travel-28.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
