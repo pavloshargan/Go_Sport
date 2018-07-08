@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfMaps.ServiceReference1;
+using BLL;
+using BLL.BLL_DTO;
 namespace WpfMaps
 {
     /// <summary>
@@ -19,12 +20,12 @@ namespace WpfMaps
     /// </summary>
     public partial class Main_Window : Window
     {
-        private ServiceClient service;
+        
         
         public Main_Window()
         {
             InitializeComponent();
-            UserName_Block.Text = CurrentSession.TokenInfo.Session.Firstname;
+            UserName_Block.Text = CurrentSession.TokenInfo.User.Firstname;
         }
         private void MapWithPushpins_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

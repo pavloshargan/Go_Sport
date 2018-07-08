@@ -13,8 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BLL;
+using BLL.BLL_DTO;
 
-using WpfMaps.ServiceReference1;
 namespace WpfMaps
 {
     /// <summary>
@@ -22,13 +23,13 @@ namespace WpfMaps
     /// </summary>
     public partial class Page_Activities : Page
     {
-        ServiceClient service = new ServiceClient();
+        private BLL_Data _bll = new BLL_Data();
 
         public Page_Activities()
         {
             
             InitializeComponent();
-            Sport_ComboBox.ItemsSource = service.GetActivityTypes();
+            Sport_ComboBox.ItemsSource = _bll.GetActivityTypes();
 
 
             

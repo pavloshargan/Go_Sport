@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
+
 namespace WCF
 {
    public static class UnconfirmedUserConverter
     {
-       public static UnconfirmedUser ToUnconfirmedUser(UserInfo user, string Password)
+     /*  public static UnconfirmedUser ToUnconfirmedUser(UserInfo user, string Password)
         {
             UnconfirmedUser rez = new UnconfirmedUser();
             rez.Firstname = user.Firstname;
@@ -38,7 +38,7 @@ namespace WCF
             }
                 
             return rez;
-        }
+        }*/
 
        
     }

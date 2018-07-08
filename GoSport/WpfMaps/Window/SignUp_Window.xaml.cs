@@ -12,8 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfMaps.ServiceReference1;
-
+using BLL;
+using BLL.BLL_DTO;
 namespace WpfMaps
 {
     /// <summary>
@@ -21,8 +21,8 @@ namespace WpfMaps
     /// </summary>
     public partial class SignUp_Window : Window
     {
-        ServiceClient service = new ServiceClient();
-        public SignUp_Window(UserInfo user, string password)
+        private BLL_Data _bll = new BLL_Data();
+        public SignUp_Window(User_BLL_DTO user, string password)
         {
             InitializeComponent();
             if(user!=null)
@@ -42,7 +42,7 @@ namespace WpfMaps
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CountriesBox.ItemsSource = service.GetListCountries();
+            CountriesBox.ItemsSource = _bll.GetCountries();
             //CitiesBox.ItemsSource = service.GetListCities();
         }
         private void Button_Click_Submit(object sender, RoutedEventArgs e)
@@ -60,16 +60,16 @@ namespace WpfMaps
                 }
                 else
                 {
-                    UserInfo new_user = new UserInfo();
+                    User_BLL_DTO new_user = new User_BLL_DTO();
                     new_user.Firstname = txtFirstName.Text;
                     new_user.LastName = txtLastName.Text;
                     new_user.Email = txtEmail.Text;
                     new_user.Login = txtLogin.Text;
                     new_user.Phone = txtPhone.Text;
-                    new_user.City = new CityInfo() { Name = (CitiesBox.SelectedItem as CityInfo).Name };
+                    new_user.City = new City_BLL_DTO() { Name = (CitiesBox.SelectedItem as City_BLL_DTO).Name };
                     try
                     {
-                        service.SignUp(new_user, txtPassword.Password);
+                        _bll.SignUp(txtFirstName.Text, txtLastName.Text, txtLogin.Text, txtEmail.Text, txtPhone.Text,txtPassword.Password, (CitiesBox.SelectedItem as City_BLL_DTO).Name, (CitiesBox.SelectedItem as City_BLL_DTO).Country.Name);
                     }
                     catch (FaultException<IncorrectInputData> ex)
                     {
@@ -78,7 +78,7 @@ namespace WpfMaps
                     }
                     try
                     {
-                        service.SendCode(new_user.Email);
+                        _bll.SendCode(new_user.Email);
                         ConfirmEmail_Window window = new ConfirmEmail_Window(new_user, txtPassword.Password);
                         window.Show();
                         this.Close();
@@ -92,7 +92,8 @@ namespace WpfMaps
         }
         private void CountriesBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CitiesBox.ItemsSource = (CountriesBox.SelectedItem as CountryInfo).CityInfos;
+            CitiesBox.ItemsSource = (CountriesBox.SelectedItem as Country_BLL_DTO).Cities;
         }
+
     }
 }

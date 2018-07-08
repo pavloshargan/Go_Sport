@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
+
 namespace WCF
 {
     public static class RouteConverter
     {
-        public static Route ToRoute(RouteInfo route)
+     /*   public static Route ToRoute(RouteInfo route)
         {
             Route rez = new Route();
             using (DataModel context = new DataModel())
@@ -32,6 +32,6 @@ namespace WCF
                 rez.Points.Add(PointConverter.ToPointInfo(p));
             }
             return rez;
-        }
+        }*/
     }
 }

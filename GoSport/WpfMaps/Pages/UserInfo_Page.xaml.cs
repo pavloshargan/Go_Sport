@@ -31,11 +31,11 @@ namespace WpfMaps
             Add_MyPost_ListView.ItemsSource = kartinkis;
 
 
-            FirstNameBox.Text = CurrentSession.TokenInfo.Session.Firstname;
-            LastNameBox.Text = CurrentSession.TokenInfo.Session.LastName;
-            EmailBox.Text = CurrentSession.TokenInfo.Session.Email;
-            PhoneBox.Text = CurrentSession.TokenInfo.Session.Phone;
-            LoginBox.Text = CurrentSession.TokenInfo.Session.Login;
+            FirstNameBox.Text = CurrentSession.TokenInfo.User.Firstname;
+            LastNameBox.Text = CurrentSession.TokenInfo.User.LastName;
+            EmailBox.Text = CurrentSession.TokenInfo.User.Email;
+            PhoneBox.Text = CurrentSession.TokenInfo.User.Phone;
+            LoginBox.Text = CurrentSession.TokenInfo.User.Login;
         }
     }
   

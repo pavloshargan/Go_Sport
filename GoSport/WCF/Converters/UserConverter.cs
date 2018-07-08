@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
+
 namespace WCF
 {
     public static class UserConverter
     {
         
-        public static User ToUser(UserInfo user)
+     /*   public static User ToUser(UserInfo user)
         {
             using (DataModel context = new DataModel())
             {
@@ -33,7 +33,7 @@ namespace WCF
 
             }
             return rez;
-        }
+        }*/
     }
 
 }

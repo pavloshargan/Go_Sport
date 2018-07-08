@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
+using WCF.DataContracts;
+using BLL;
 namespace WCF
 {
    public static class PointConverter
-    {
-        public static Point ToPoint(PointInfo point)
+   {
+     /*  public static Point ToPoint(PointInfo point)
         {
             return new Point() { Longitude = point.Longitude, Latitude = point.Latitude };
         }
@@ -16,5 +17,6 @@ namespace WCF
         {
             return new PointInfo() { Longitude = point.Longitude, Latitude = point.Latitude };
         }
-    }
+       */
+   }
 }

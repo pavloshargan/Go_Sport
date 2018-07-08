@@ -11,8 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfMaps.ServiceReference1;
 
+using BLL;
+using BLL.BLL_DTO;
 namespace WpfMaps
 {
     /// <summary>
@@ -20,11 +21,11 @@ namespace WpfMaps
     /// </summary>
     public partial class ConfirmEmail_Window : Window
     {
-        private UserInfo CurrentUser;
+        private User_BLL_DTO CurrentUser;
         private string Password;
-        ServiceClient client = new ServiceClient();
+        private BLL_Data _bll = new BLL_Data();
 
-        public ConfirmEmail_Window(UserInfo user, string password)
+        public ConfirmEmail_Window(User_BLL_DTO user, string password)
         {
             InitializeComponent();
             CurrentUser = user;
@@ -41,7 +42,7 @@ namespace WpfMaps
         {
             try
             {
-                bool a= client.ConfirmEmail(CurrentUser.Email, CodeBox.Text);
+                bool a= _bll.ConfirmEmail(CurrentUser.Email, CodeBox.Text);
                 if (a)
                 {
                     MessageBox.Show("Done");

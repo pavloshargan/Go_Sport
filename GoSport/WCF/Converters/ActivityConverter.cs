@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
+
 namespace WCF
 {
     public static class ActivityConverter
     {
-        public static Activity ToActivity(ActivityInfo activity)
+      /*  public static Activity ToActivity(ActivityInfo activity)
         {
             Activity rez = new Activity();
             rez.Route = RouteConverter.ToRoute(activity.Route);
@@ -42,6 +42,6 @@ namespace WCF
             }
             rez.Type = activity.Type.Name;
                 return rez;
-        }
+        }*/
     }
 }

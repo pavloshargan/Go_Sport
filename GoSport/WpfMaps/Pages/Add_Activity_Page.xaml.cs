@@ -12,10 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfMaps.ServiceReference1;
+
 using Microsoft.Maps.MapControl.WPF;
 using System.ServiceModel;
-
+using BLL;
+using BLL.BLL_DTO;
 namespace WpfMaps
 {
     /// <summary>
@@ -23,67 +24,61 @@ namespace WpfMaps
     /// </summary>
     public partial class Add_Activity_Page : Page
     {
-        ServiceClient service = new ServiceClient();
+        //  ServiceClient service = new ServiceClient();
         Map_Page map_Page = new Map_Page();
-
+        private BLL_Data _bll = new BLL_Data();
         public Add_Activity_Page()
         {
             InitializeComponent();
 
-            Sport_ComboBox.ItemsSource = service.GetActivityTypes();
+            Sport_ComboBox.ItemsSource = _bll.GetActivityTypes();
             Frame_Map.Content = map_Page;
-            CityBox.ItemsSource = service.GetListCities();
+            CityBox.ItemsSource = _bll.GetCities();
         }
+
+
+
         private void Add_Activity_Click(object sender, RoutedEventArgs e)
         {
-            ActivityInfo activity = new ActivityInfo();
+            Activity_BLL_DTO activity = new Activity_BLL_DTO();
             activity.Date = DateBox.SelectedDate.Value;
             activity.Date = TimeBox.SelectedTime.Value;
-            activity.Type = Sport_ComboBox.SelectedItem.ToString();
+            activity.Type = (Sport_ComboBox.SelectedItem as ActivityType_BLL_DTO);
 
-            List<PointInfo> points = new List<PointInfo>();
-            try
+            List<Point_BLL_DTO> points = new List<Point_BLL_DTO>();
+
+            points.Add(new Point_BLL_DTO()
             {
-                points.Add(new PointInfo()
-                {
-                    Latitude = (decimal)map_Page.Get_Start_DragPin.Location.Latitude,
-                    Longitude = (decimal)map_Page.Get_Start_DragPin.Location.Longitude
-                });
-                for (int i = 0; i < map_Page.Get_Other_DragPins.Count; i++)
-                {
-                    points.Add(new PointInfo()
-                    {
-                        Latitude = (decimal)map_Page.Get_Other_DragPins[i].Location.Latitude,
-                        Longitude = (decimal)map_Page.Get_Other_DragPins[i].Location.Longitude
-                    });
-                }
-                points.Add(new PointInfo()
-                {
-                    Latitude = (decimal)map_Page.Get_End_DragPin.Location.Latitude,
-                    Longitude = (decimal)map_Page.Get_End_DragPin.Location.Longitude
-                });
-
-                RouteInfo route = new RouteInfo();
-                route.Points = points.ToArray();
-          
-                route.City = (CityBox.SelectedItem as CityInfo).Name;
-      
-                activity.Route = route;
-
-                MessageBox.Show(activity.Date.ToString() + "  " + activity.Type);
-                
-                service.CreateActivity(activity, CurrentSession.TokenInfo);
-
-            }
-            catch (FaultException<IncorrectInputData> ex)
+                Latitude = (decimal)map_Page.Get_Start_DragPin.Location.Latitude,
+                Longitude = (decimal)map_Page.Get_Start_DragPin.Location.Longitude
+            });
+            for (int i = 0; i < map_Page.Get_Other_DragPins.Count; i++)
             {
-                MessageBox.Show(ex.Detail.Message);
-                //throw;
+                points.Add(new Point_BLL_DTO()
+                {
+                    Latitude = (decimal)map_Page.Get_Other_DragPins[i].Location.Latitude,
+                    Longitude = (decimal)map_Page.Get_Other_DragPins[i].Location.Longitude
+                });
             }
+            points.Add(new Point_BLL_DTO()
+            {
+                Latitude = (decimal)map_Page.Get_End_DragPin.Location.Latitude,
+                Longitude = (decimal)map_Page.Get_End_DragPin.Location.Longitude
+            });
 
+            Route_BLL_DTO route = new Route_BLL_DTO();
+            route.Points = points.ToArray();
 
+            route.City = (CityBox.SelectedItem as City_BLL_DTO);
 
+            activity.Route = route;
+            activity.Route.City = (CityBox.SelectedItem as City_BLL_DTO);
 
+            MessageBox.Show(activity.Date.ToString() + "  " + activity.Type);
+
+            _bll.CreateActivity(activity);
+
+            
         }
 
 

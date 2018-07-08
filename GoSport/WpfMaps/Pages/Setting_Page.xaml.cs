@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfMaps.ServiceReference1;
+using BLL;
+using BLL.BLL_DTO;
 namespace WpfMaps
 {
     /// <summary>
@@ -20,18 +21,18 @@ namespace WpfMaps
     /// </summary>
     public partial class Setting_Page : Page
     {
-        ServiceClient service = new ServiceClient();
+        private BLL_Data _bll = new BLL_Data();
         public Setting_Page()
         {
             InitializeComponent();
-            CountryBox.ItemsSource = service.GetListCountries();
-            txtFirstName.Text = CurrentSession.TokenInfo.Session.Firstname;
-            txtLastName.Text = CurrentSession.TokenInfo.Session.LastName;
-            txtLogin.Text = CurrentSession.TokenInfo.Session.Login;
-            txtPhone.Text = CurrentSession.TokenInfo.Session.Phone;
-            txtEmail.Text = CurrentSession.TokenInfo.Session.Email;
+            CountryBox.ItemsSource = _bll.GetCountries();
+            txtFirstName.Text = CurrentSession.TokenInfo.User.Firstname;
+            txtLastName.Text = CurrentSession.TokenInfo.User.LastName;
+            txtLogin.Text = CurrentSession.TokenInfo.User.Login;
+            txtPhone.Text = CurrentSession.TokenInfo.User.Phone;
+            txtEmail.Text = CurrentSession.TokenInfo.User.Email;
 
-            CountryBox.SelectedItem = CurrentSession.TokenInfo.Session.City.CountryInfo;
+            CountryBox.SelectedItem = CurrentSession.TokenInfo.User.City.Country;
 
 
         }

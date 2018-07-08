@@ -51,7 +51,7 @@
         
         
         
-        <Frame Name="Frame_Map" Margin="10,17,10,0" Grid.Row="2" Grid.RowSpan="7" Grid.ColumnSpan="4"></Frame>
+        <Frame Name="Frame_Map"  Grid.Row="2" Grid.RowSpan="7" Grid.ColumnSpan="4"></Frame>
         
 
 

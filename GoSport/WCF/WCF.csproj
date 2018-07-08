@@ -36,6 +36,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -47,6 +50,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +70,16 @@
     <Compile Include="Converters\RouteConverter.cs" />
     <Compile Include="Converters\TokenConverter.cs" />
     <Compile Include="Converters\UserConverter.cs" />
+    <Compile Include="DataContracts\ActivityInfo.cs" />
+    <Compile Include="DataContracts\ActivityTypeInfo.cs" />
+    <Compile Include="DataContracts\CityInfo.cs" />
+    <Compile Include="DataContracts\CountryInfo.cs" />
+    <Compile Include="DataContracts\ImageInfo.cs" />
+    <Compile Include="DataContracts\IncorrectInputData.cs" />
+    <Compile Include="DataContracts\PointInfo.cs" />
+    <Compile Include="DataContracts\RouteInfo.cs" />
+    <Compile Include="DataContracts\TokenInfo.cs" />
+    <Compile Include="DataContracts\UserInfo.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,10 +94,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{a33f56d0-1549-402e-92df-c130f9f3b6a7}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{4416988a-430d-4b8a-b9fc-a6770d252d86}</Project>
+      <Name>BLL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

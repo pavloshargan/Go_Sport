@@ -49,34 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModel.cs" />
-    <Compile Include="Migrations\201807020709442_mgr1.cs" />
-    <Compile Include="Migrations\201807020709442_mgr1.Designer.cs">
-      <DependentUpon>201807020709442_mgr1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807020837296_mgr2.cs" />
-    <Compile Include="Migrations\201807020837296_mgr2.Designer.cs">
-      <DependentUpon>201807020837296_mgr2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807030713020_tokens.cs" />
-    <Compile Include="Migrations\201807030713020_tokens.Designer.cs">
-      <DependentUpon>201807030713020_tokens.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807030715415_tokensDbSet.cs" />
-    <Compile Include="Migrations\201807030715415_tokensDbSet.Designer.cs">
-      <DependentUpon>201807030715415_tokensDbSet.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807030726083_tokensDate.cs" />
-    <Compile Include="Migrations\201807030726083_tokensDate.Designer.cs">
-      <DependentUpon>201807030726083_tokensDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807030859401_ActivityDate.cs" />
-    <Compile Include="Migrations\201807030859401_ActivityDate.Designer.cs">
-      <DependentUpon>201807030859401_ActivityDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807041121178_mgr8.cs" />
-    <Compile Include="Migrations\201807041121178_mgr8.Designer.cs">
-      <DependentUpon>201807041121178_mgr8.cs</DependentUpon>
+    <Compile Include="Entities\Activity.cs" />
+    <Compile Include="Entities\ActivityType.cs" />
+    <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Image.cs" />
+    <Compile Include="Entities\Point.cs" />
+    <Compile Include="Entities\Route.cs" />
+    <Compile Include="Entities\Token.cs" />
+    <Compile Include="Entities\UnconfirmedUser.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="EF\DataModel.cs" />
+    <Compile Include="Migrations\201807081722339_mgr1.cs" />
+    <Compile Include="Migrations\201807081722339_mgr1.Designer.cs">
+      <DependentUpon>201807081722339_mgr1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,26 +74,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807020709442_mgr1.resx">
-      <DependentUpon>201807020709442_mgr1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807020837296_mgr2.resx">
-      <DependentUpon>201807020837296_mgr2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807030713020_tokens.resx">
-      <DependentUpon>201807030713020_tokens.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807030715415_tokensDbSet.resx">
-      <DependentUpon>201807030715415_tokensDbSet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807030726083_tokensDate.resx">
-      <DependentUpon>201807030726083_tokensDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807030859401_ActivityDate.resx">
-      <DependentUpon>201807030859401_ActivityDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807041121178_mgr8.resx">
-      <DependentUpon>201807041121178_mgr8.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807081722339_mgr1.resx">
+      <DependentUpon>201807081722339_mgr1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

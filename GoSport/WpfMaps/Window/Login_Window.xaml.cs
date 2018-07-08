@@ -12,7 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfMaps.ServiceReference1;
+
+using BLL;
+using BLL.BLL_DTO;
+
 namespace WpfMaps
 {
     /// <summary>
@@ -20,12 +23,11 @@ namespace WpfMaps
     /// </summary>
     public partial class Login_Window : Window
     {
-        ServiceClient service = new ServiceClient();
+        private BLL_Data _bll = new BLL_Data();
         public Login_Window()
         {
             InitializeComponent();
         }
-         
         private void Button_Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -33,11 +35,10 @@ namespace WpfMaps
      
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            
             try
             {
-                CurrentSession.TokenInfo = service.SignIn(txtEmail.Text, txtPassword.Password);
+                string key = _bll.SignIn(txtEmail.Text, txtPassword.Password);
+                CurrentSession.TokenInfo = _bll.GetTokenByKey(key);
             }
             catch (FaultException<IncorrectInputData> ex)
             {
@@ -48,7 +49,6 @@ namespace WpfMaps
             main.Show();
             this.Close();
         }
-        
         private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             SignUp_Window window = new SignUp_Window(null,null);

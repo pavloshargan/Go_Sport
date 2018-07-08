@@ -3,34 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
+using BLL.BLL_DTO;
+using WCF.DataContracts;
+using AutoMapper;
+
 namespace WCF
 {
     public static class CountryConverter
     {
-        public static Country ToCountry(CountryInfo info)
+        public static List<CountryInfo> ToCountryInfo(List<Country_BLL_DTO> info)
         {
-            Country rez = new Country();
-            foreach (CityInfo a in info.CityInfos)
+            List<CountryInfo> rez = new List<CountryInfo>();
+        
+            foreach (Country_BLL_DTO a in info)
             {
-                rez.Cities.Add(new City() { Name = a.Name });
+                rez.Add(new CountryInfo() { Name = a.Name, Cities = CityConverter.ToCity(a.Cities.ToList()) });
             }
-            rez.Name = info.Name;
             return rez;
         }
 
-        public static CountryInfo ToCountryInfo(Country country)
+        public static CountryInfo ToCountryInfo(Country_BLL_DTO country)
         {
-            CountryInfo rez = new CountryInfo();
-            foreach (City c in country.Cities)
-            {
-                rez.CityInfos.Add(new CityInfo() { Name = c.Name });
-
-            }
-            rez.Name = country.Name;
-
-
-            return rez;
+            return new CountryInfo() { Name = country.Name, Cities = CityConverter.ToCity(country.Cities.ToList()) };
         }
     }
 }
