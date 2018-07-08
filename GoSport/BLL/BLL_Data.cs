@@ -31,14 +31,14 @@ namespace BLL
             var dest = Mapper.Map<List<Country>, List<Country_BLL_DTO>>(ctx.Countries.ToList());
             return dest;
         }
-        public List<string> GetActivityTypes()
+        public List<ActivityType_BLL_DTO> GetActivityTypes()
         {
-            List<string> activities = new List<string>();
+            List<ActivityType_BLL_DTO> rez = new List<ActivityType_BLL_DTO>();
             foreach (ActivityType a in ctx.ActivityTypes)
             {
-                activities.Add(a.Name);
+                rez.Add(new ActivityType_BLL_DTO() { Name=a.Name});
             }
-            return activities;
+            return rez;
         }
 
         public List<Activity_BLL_DTO> GetActivities()
@@ -50,10 +50,11 @@ namespace BLL
         }
         public List<Activity_BLL_DTO> GetMyActivities(Token_BLL_DTO token)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Activity, Activity_BLL_DTO>());
-            var dest = Mapper.Map<List<Activity>, List<Activity_BLL_DTO>>(ctx.Activities.Where(x => x.Users.First() == Converter_BLL_DTO.ToToken(token).User).ToList());
-            return dest;
+            return null;
+            //Mapper.Reset();
+            //Mapper.Initialize(cfg => cfg.CreateMap<Activity, Activity_BLL_DTO>());
+            //var dest = Mapper.Map<List<Activity>, List<Activity_BLL_DTO>>(ctx.Activities.Where(x => x.Users.First() == Converter_BLL_DTO.ToToken(token).User).ToList());
+            //return dest;
         }
         public Token_BLL_DTO GetTokenByKey(string key)
         {
@@ -96,8 +97,9 @@ namespace BLL
         }
         public void CreateActivity(Activity_BLL_DTO activity)
         {
-            Activity a = Converter_BLL_DTO.ToActivity(activity);
+            Activity a = Converter_BLL_DTO.ToActivity(activity, ctx);
             ctx.Activities.Add(a);
+            ctx.SaveChanges();
         }
         #endregion
 

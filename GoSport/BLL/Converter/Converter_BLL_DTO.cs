@@ -11,99 +11,79 @@ namespace BLL.Converter
 {
     public class Converter_BLL_DTO
     {
-        public static  DataModel data = new DataModel();
-        public static User ToUser(User_BLL_DTO _bll_user)
+
+        public static User ToUser(User_BLL_DTO _bll_user, DataModel context)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<User_BLL_DTO, User>());
-            var dest = Mapper.Map<User_BLL_DTO, User>(_bll_user);
-            return dest;
+            return context.Users.FirstOrDefault(x => x.Login == _bll_user.Login);
         }
-        public static ActivityType ToActivityType(ActivityType_BLL_DTO _bll_activity_type)
+        public static ActivityType ToActivityType(ActivityType_BLL_DTO _bll_activity_type, DataModel context)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<ActivityType_BLL_DTO, ActivityType>());
-            var dest = Mapper.Map<ActivityType_BLL_DTO, ActivityType>(_bll_activity_type);
-            return dest;
+            return context.ActivityTypes.FirstOrDefault(x => x.Name == _bll_activity_type.Name);
         }
-        public static Activity ToActivity(Activity_BLL_DTO activity_BLL_DTO)
+        public static Activity ToActivity(Activity_BLL_DTO activity_BLL_DTO, DataModel context)
         {
             Activity activity = new Activity();
-            activity.Type = Converter_BLL_DTO.ToActivityType(activity_BLL_DTO.Type);
-            activity.Route = ToRoute(activity_BLL_DTO.Route);
+            activity.Type = Converter_BLL_DTO.ToActivityType(activity_BLL_DTO.Type, context);
+            activity.Route = ToRoute(activity_BLL_DTO.Route, context);
           
-            activity.Users=ToUserList( activity_BLL_DTO.Users.ToList());
+            foreach(User_BLL_DTO us in activity_BLL_DTO.Users)
+            {
+                activity.Users.Add(context.Users.FirstOrDefault(x => x.Login == us.Login));
+            }
             activity.Date = activity_BLL_DTO.Date;
 
             return activity;
         }
-        public static City ToCity(City_BLL_DTO city_BLL_DTO)
+        public static City ToCity(City_BLL_DTO city_BLL_DTO, DataModel context)
         {
             
-            City city = data.Cities.FirstOrDefault(x => x.Name == city_BLL_DTO.Name);
+            City city = context.Cities.FirstOrDefault(x => x.Name == city_BLL_DTO.Name);
             return city;
         }
-        public static Country ToCountry(Country_BLL_DTO Country_BLL_DTO)
+        public static Country ToCountry(Country_BLL_DTO Country_BLL_DTO, DataModel context)
         {
-            /* Mapper.Reset();
-             Mapper.Initialize(cfg => cfg.CreateMap<Country_BLL_DTO, Country>());
-             var dest = Mapper.Map<Country_BLL_DTO, Country>(Country_BLL_DTO);
-             return dest;*/
-            
-            return data.Countries.FirstOrDefault(x => x.Name == Country_BLL_DTO.Name);
+            return context.Countries.FirstOrDefault(x => x.Name == Country_BLL_DTO.Name);
         }
-        public static Image ToImage(Image_BLL_DTO Image_BLL_DTO)
+        public static Image ToImage(Image_BLL_DTO Image_BLL_DTO, DataModel context)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Image_BLL_DTO, Image>());
-            var dest = Mapper.Map<Image_BLL_DTO, Image>(Image_BLL_DTO);
-            return dest;
-
+            return new Image() { BinaryImage = Image_BLL_DTO.BinaryImage };//пофіксить в базі
         }
-        public static Point ToPoint(Point_BLL_DTO Point_BLL_DTO)
+        public static Point ToPoint(Point_BLL_DTO Point_BLL_DTO, DataModel context)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Point_BLL_DTO, Point>());
-            var dest = Mapper.Map<Point_BLL_DTO, Point>(Point_BLL_DTO);
-            return dest;
-
+            return new Point() { Longitude = Point_BLL_DTO.Longitude, Latitude = Point_BLL_DTO.Latitude };
         }
-        public static Route ToRoute(Route_BLL_DTO Route_BLL_DTO)
+        public static Route ToRoute(Route_BLL_DTO Route_BLL_DTO, DataModel context)
         {
-            /*Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Route_BLL_DTO, Route>());
-            var dest = Mapper.Map<Route_BLL_DTO, Route>(Route_BLL_DTO);
-            return dest;
-            */
             Route route = new Route();
-            route.City = ToCity(Route_BLL_DTO.City);
+            route.City = ToCity(Route_BLL_DTO.City, context);
             foreach(Point_BLL_DTO p in Route_BLL_DTO.Points)
             {
-                route.Points.Add(ToPoint(p));
+                route.Points.Add(ToPoint(p,context));
             }
             return route;
         }
-        public static Token ToToken(Token_BLL_DTO Token_BLL_DTO)
+        public static Token ToToken(Token_BLL_DTO Token_BLL_DTO, DataModel context)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Token_BLL_DTO, Token>());
-            var dest = Mapper.Map<Token_BLL_DTO, Token>(Token_BLL_DTO);
-            return dest;
+            return context.Tokens.FirstOrDefault(x => x.User.Login==Token_BLL_DTO.User.Login);
 
         }
-        public static List<Token> ToTokenList(List<Token_BLL_DTO> tokens)
+        public static List<Token> ToTokenList(List<Token_BLL_DTO> tokens, DataModel context)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Token_BLL_DTO, Token>());
-            var dest = Mapper.Map<List<Token_BLL_DTO>, List<Token>>(tokens);
-            return dest;
+            List<Token> rez = new List<Token>();
+            foreach(Token_BLL_DTO t in tokens)
+            {
+                rez.Add(ToToken(t, context));
+            }
+            return rez;
         }
-        public static List<User> ToUserList(List<User_BLL_DTO> users)
+        public static List<User> ToUserList(List<User_BLL_DTO> users, DataModel context)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<User_BLL_DTO, User>());
-            var dest = Mapper.Map<List<User_BLL_DTO>, List<User>>(users);
-            return dest;
+            List<User> rez = new List<User>();
+            foreach (User_BLL_DTO us in users)
+            {
+                rez.Add(ToUser(us, context));
+            }
+            return rez;
         }
     }
 }

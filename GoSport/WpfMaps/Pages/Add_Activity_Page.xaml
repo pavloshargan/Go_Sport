@@ -35,7 +35,8 @@
         <Label FontSize="29" >Activity</Label>
 
 
-        <ComboBox Name="Sport_ComboBox" Grid.Row="1" materialDesign:HintAssist.Hint="Sport" Margin="10,10" 
+        <ComboBox  
+                  DisplayMemberPath="Name" Name="Sport_ComboBox" Grid.Row="1" materialDesign:HintAssist.Hint="Sport" Margin="10,10" 
                   ></ComboBox>
 
         <DatePicker Name="DateBox" Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Enter Date" Margin="10" ></DatePicker>

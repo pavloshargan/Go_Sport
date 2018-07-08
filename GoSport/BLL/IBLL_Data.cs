@@ -12,7 +12,7 @@ namespace BLL
     {
         List<City_BLL_DTO> GetCities();
         List<Country_BLL_DTO> GetCountries();
-        List<string> GetActivityTypes();
+        List<ActivityType_BLL_DTO> GetActivityTypes();
         List<Activity_BLL_DTO> GetActivities();
         List<Activity_BLL_DTO> GetMyActivities(Token_BLL_DTO token);
         void Add_User(string _firstname, string _lastname, string _login, string _email, string _phone, string _pass, string _city, string _country);
