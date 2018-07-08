@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DesignHeight="550" d:DesignWidth="770"
-      Title="Search_Page">
+      Title="Search_Page" Loaded="Page_Loaded">
     <Page.Resources>
         <Style x:Key="LabelKey" TargetType="Label" >
             <Setter Property="FontSize" Value="10"></Setter>
@@ -39,8 +39,8 @@
 
 
         <Label FontSize="29">Search</Label>
-        
-        
+
+
         <Label Style="{StaticResource LabelKey}" Grid.Row="1" Margin="10,0,10,28" >First Name</Label>
         <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="10,10,10,0" >
             <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Margin="0,8" Width="30"/>
@@ -64,26 +64,51 @@
         <ComboBox Name="CityBox" Grid.Row="1"  Grid.Column="3" Margin="10" Height="35"
                   materialDesign:HintAssist.Hint="Enter City" ></ComboBox>
 
-        <Grid Grid.Row="3" Grid.ColumnSpan="4" Margin="10,0,60,10" Grid.RowSpan="2">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Ellipse Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Stroke="White" Margin="0,0,35,0">
-                <Ellipse.Fill>
-                    <ImageBrush ImageSource="https://hdanimalspot.com//storage/upload/human/human-58." Stretch="UniformToFill"/>
-                </Ellipse.Fill>
-            </Ellipse>
-            <Label Name="lbl_FullName" Grid.Column="1"
+
+        <ListView Name="Add_Users_ListView"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10" Grid.RowSpan="8" Grid.ColumnSpan="4" Grid.Row="2"
+                          >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel  />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListBox.ItemTemplate >
+                <DataTemplate>
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Ellipse Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Stroke="White" Margin="0,0,35,0">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="https://hdanimalspot.com//storage/upload/human/human-58." Stretch="UniformToFill"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        
+                        <Label Name="lbl_FullName" Grid.Column="1" Content="{Binding Path=FirstName}"
                    Margin="0,20" FontSize="25" HorizontalContentAlignment="Center" VerticalAlignment="Center"></Label>
-            <Label Name="lbl_Followers" Grid.Column="1"
-                   Margin="0,20" FontSize="25" HorizontalContentAlignment="Center" VerticalAlignment="Center"></Label>
+                        <Label  Grid.Column="2"
+                     FontSize="18" Margin="0,0,0,61"  >Followers</Label>
 
-        </Grid>
+                        <Label Content="{Binding Path=Followers.Count}" Name="lbl_Followers" Grid.Column="2"
+                   Margin="0,46,0,13" FontSize="25" HorizontalContentAlignment="Center" VerticalAlignment="Center"></Label>
 
+                    </Grid>
+
+
+
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+
+        </ListView>
 
     </Grid>
 </Page>

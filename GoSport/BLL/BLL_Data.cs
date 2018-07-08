@@ -17,7 +17,17 @@ namespace BLL
         private readonly DataModel ctx = new DataModel();
 
         #region Gets
-    
+
+        public List<User_BLL_DTO> GetUsers()
+        {
+
+
+        }
+        public int GetUserFollowesCount(Token_BLL_DTO token)
+        {
+            return ctx.Users.FirstOrDefault(x => x.Login == token.User.Login).Folowers.Count();
+        }
+
         public List<City_BLL_DTO> GetCities()
         {
             Mapper.Reset();

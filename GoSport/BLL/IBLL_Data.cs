@@ -15,6 +15,7 @@ namespace BLL
         List<ActivityType_BLL_DTO> GetActivityTypes();
         List<Activity_BLL_DTO> GetActivities();
         List<Activity_BLL_DTO> GetMyActivities(Token_BLL_DTO token);
+        int GetUserFollowesCount(Token_BLL_DTO token);
         void Add_User(string _firstname, string _lastname, string _login, string _email, string _phone, string _pass, string _city, string _country);
         void Add_UnconfirmedUser(string _firstname, string _lastname, string _login, string _email, string _phone, string _pass, string _city, string _country);
         bool SignUp(string _firstname, string _lastname, string _login, string _email, string _phone, string _pass, string _city, string _country);
@@ -23,6 +24,7 @@ namespace BLL
         string SignIn(string Login, string Password);
         void CreateActivity(Activity_BLL_DTO activity);
         Token_BLL_DTO GetTokenByKey(string key);
+        List<User_BLL_DTO> GetUsers();
 
 
     }
