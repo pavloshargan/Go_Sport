@@ -12,12 +12,16 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="83*"/>
-            <RowDefinition Height="42*"/>
+            <RowDefinition/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="125*"/>
-            <RowDefinition Height="125*"/>
-            <RowDefinition Height="125*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -25,20 +29,19 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Rectangle Fill="White" Grid.RowSpan="6" Grid.ColumnSpan="3"></Rectangle>
+        <Rectangle Fill="White" Grid.RowSpan="10" Grid.ColumnSpan="3"></Rectangle>
 
-        <Label FontSize="30" VerticalAlignment="Center" Margin="0,0,10,33.333">Activities</Label>
-        <ComboBox Name="Sport_ComboBox" Grid.Row="2" materialDesign:HintAssist.Hint="Sport" Margin="10,11" 
+        <Label VerticalContentAlignment="Center" FontSize="29" VerticalAlignment="Center" Margin="0,-14,256.333,0" Height="70" Grid.ColumnSpan="2">Activities</Label>
+        <ComboBox Name="Sport_ComboBox" Grid.Row="1" materialDesign:HintAssist.Hint="Sport" Margin="10,12,9.667,10" Height="28" 
                   ></ComboBox>
 
-        <DatePicker Grid.Row="2" Grid.Column="1" materialDesign:HintAssist.Hint="Enter Date" Margin="10" ></DatePicker>
-        <materialDesign:TimePicker Grid.Row="2" Grid.Column="2" Height="28" Margin="10,12,10,0"></materialDesign:TimePicker>
-        <Rectangle  Fill="Black" Height="2" Grid.Row="3" Grid.ColumnSpan="3" Margin="39,10,41,113"></Rectangle>
+        <DatePicker Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Enter Date" Margin="10.333,10,256,10" Grid.ColumnSpan="2" ></DatePicker>
+        <materialDesign:TimePicker Grid.Row="1" Grid.Column="2" Height="28" Margin="9.667,12,10,0"></materialDesign:TimePicker>
 
         <!--<Frame Name="Map_Frame" Margin="10,42,10,10" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="3"/>-->
-        <m:Map CredentialsProvider="AsBORSS10JgJ4m-YquwtXqviPkDtDiOl3WnqTMxTzON5hrx40b9iOevNdqSzjvRM" Name="MyMap"  Margin="10,42,10,10" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="3">
-            
-            
+        <m:Map CredentialsProvider="AsBORSS10JgJ4m-YquwtXqviPkDtDiOl3WnqTMxTzON5hrx40b9iOevNdqSzjvRM" Name="MyMap"  Margin="10" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="8">
+
+
         </m:Map>
 
     </Grid>

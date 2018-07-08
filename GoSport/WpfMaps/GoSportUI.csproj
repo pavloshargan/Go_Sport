@@ -79,7 +79,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\RouteParticipants_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Setting_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Search_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,8 +132,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="Classes\CurrentSession.cs" />
+    <Compile Include="Pages\RouteParticipants_Page.xaml.cs">
+      <DependentUpon>RouteParticipants_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Setting_Page.xaml.cs">
       <DependentUpon>Setting_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Search_Page.xaml.cs">
+      <DependentUpon>Search_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\DragPin.xaml.cs">
       <DependentUpon>DragPin.xaml</DependentUpon>

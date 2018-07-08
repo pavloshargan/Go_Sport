@@ -52,10 +52,10 @@ namespace BLL
         public List<Activity_BLL_DTO> GetMyActivities(Token_BLL_DTO token)
         {
             return null;
-            //Mapper.Reset();
-            //Mapper.Initialize(cfg => cfg.CreateMap<Activity, Activity_BLL_DTO>());
-            //var dest = Mapper.Map<List<Activity>, List<Activity_BLL_DTO>>(ctx.Activities.Where(x => x.Users.First() == Converter_BLL_DTO.ToToken(token).User).ToList());
-            //return dest;
+           /* Mapper.Reset();
+            Mapper.Initialize(cfg => cfg.CreateMap<Activity, Activity_BLL_DTO>());
+            var dest = Mapper.Map<List<Activity>, List<Activity_BLL_DTO>>(ctx.Activities.Where(x => x.Users.Where(y=>y.Login== Converter_BLL_DTO.ToToken(token).User.Login)).ToList());
+            return dest;*/
         }
         public Token_BLL_DTO GetTokenByKey(string key)
         {
