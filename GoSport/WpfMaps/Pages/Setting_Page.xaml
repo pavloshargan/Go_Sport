@@ -72,6 +72,7 @@
                 <ComboBox  Grid.Row="6" Name="CountryBox" Style="{StaticResource ComcoBox_key}"
                            ItemsSource="{Binding Path=CountryInfo}"
                            DisplayMemberPath="Name"
+                           
                            ></ComboBox>
                 <ComboBox Grid.Row="7" Name="CityBox" Style="{StaticResource ComcoBox_key}"
                           ItemsSource="{Binding Path=CityInfo}"

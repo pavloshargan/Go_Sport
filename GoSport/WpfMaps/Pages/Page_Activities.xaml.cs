@@ -30,25 +30,47 @@ namespace WpfMaps
             
             InitializeComponent();
             Sport_ComboBox.ItemsSource = _bll.GetActivityTypes();
-
-
             
-
-
         }
         private void MyMap_Loaded(object sender, RoutedEventArgs e)
         {
-            //foreach (ActivityInfo c in service.GetAllActivities())
-            //{
-            //    Pushpin pushpin = new Pushpin();
-            //    PointInfo point = c.Route.Points.First();
-            //    pushpin.Location.Longitude = (double)point.Longitude;
-            //    pushpin.Location.Latitude = (double)point.Latitude;
-            //    MyMap.Children.Add(pushpin);
-            //}
-           
+            foreach (Activity_BLL_DTO a in _bll.GetActivities())
+            {
+                Pushpin pushpin = new Pushpin();
+                //pushpin.Tag=a
+                #region Context Menu
+                ContextMenu contextMenu = new ContextMenu();
+                MenuItem menuItem = new MenuItem();
+                menuItem.Header = "Show Route";
+                menuItem.Click += MenuItem_Click1;
+                contextMenu.Items.Add(menuItem);
+
+                menuItem = new MenuItem();
+                menuItem.Header = "Show Participants";
+                menuItem.Click += MenuItem_Click2;
+                contextMenu.Items.Add(menuItem);
+                #endregion
+
+                pushpin.ContextMenu = contextMenu;
+
+               
+                Point_BLL_DTO point = a.Route.Points.First();
+                pushpin.Location = new Location((double)point.Latitude, (double)point.Longitude);
+
+                MyMap.Children.Add(pushpin);
+            }
+
         }
 
+        private void MenuItem_Click2(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("2");
+        }
+        private void MenuItem_Click1(object sender, RoutedEventArgs e)
+        {
+            
+
+        }
 
 
 

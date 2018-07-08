@@ -17,6 +17,7 @@ namespace BLL
         private readonly DataModel ctx = new DataModel();
 
         #region Gets
+    
         public List<City_BLL_DTO> GetCities()
         {
             Mapper.Reset();
