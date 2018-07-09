@@ -64,6 +64,7 @@
     <Compile Include="BLL_DTO\Point_BLL_DTO.cs" />
     <Compile Include="BLL_DTO\Route_BLL_DTO.cs" />
     <Compile Include="BLL_DTO\Token_BLL_DTO.cs" />
+    <Compile Include="BLL_DTO\UserInfo_BLL_DTO.cs" />
     <Compile Include="BLL_DTO\User_BLL_DTO.cs" />
     <Compile Include="Converter\Converter_BLL_DTO.cs" />
     <Compile Include="IBLL_Data.cs" />

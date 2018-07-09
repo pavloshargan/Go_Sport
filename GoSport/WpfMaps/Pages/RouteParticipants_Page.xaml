@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:WpfMaps.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="332" d:DesignWidth="230"
-      Title="RouteParticipants_Page">
+      Title="RouteParticipants_Page"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      >
 
     <Grid>
         <Rectangle Fill="White"></Rectangle>

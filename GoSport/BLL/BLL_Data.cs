@@ -17,11 +17,22 @@ namespace BLL
         private readonly DataModel ctx = new DataModel();
 
         #region Gets
-
+        public List<UserInfo_BLL_DTO> GetUserInfo()
+        {
+            Mapper.Reset();
+            Mapper.Initialize(cfg => cfg.CreateMap<User, UserInfo_BLL_DTO>()
+            .ForMember("FullName",opt=>opt.MapFrom(x=>x.Firstname+" "+x.LastName)
+            
+            ));
+            var dest = Mapper.Map<List<User>, List<UserInfo_BLL_DTO>>(ctx.Users.ToList());
+            return dest;
+        }
         public List<User_BLL_DTO> GetUsers()
         {
-
-
+            Mapper.Reset();
+            Mapper.Initialize(cfg => cfg.CreateMap<User, User_BLL_DTO>());
+            var dest = Mapper.Map<List<User>, List<User_BLL_DTO>>(ctx.Users.ToList());
+            return dest;
         }
         public int GetUserFollowesCount(Token_BLL_DTO token)
         {
@@ -69,14 +80,26 @@ namespace BLL
         }
         public Token_BLL_DTO GetTokenByKey(string key)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Token, Token_BLL_DTO>());
-            var dest = Mapper.Map<Token, Token_BLL_DTO>(ctx.Tokens.FirstOrDefault(x => x.Key == key));
-            return dest;
+             Mapper.Reset();
+             Mapper.Initialize(cfg => cfg.CreateMap<Token, Token_BLL_DTO>());
+             var dest = Mapper.Map<Token, Token_BLL_DTO>(ctx.Tokens.FirstOrDefault(x => x.Key == key));
+             return dest;
+            /*Token token = new Token();
+            token = ctx.Tokens.FirstOrDefault(x => x.Key == key);
+            Token_BLL_DTO dest = new Token_BLL_DTO();
+            dest.Date = token.Date;
+            dest.Key = token.Key;
+            dest.User = ctx.Users.FirstOrDefault(x => x.Id == token.User.Id);
+            return dest;*/
         }
         #endregion
 
         #region All_Add
+        public void Subscibe(User_BLL_DTO user, Token_BLL_DTO token)
+        {
+            ctx.Users.FirstOrDefault(x => x.Login == token.User.Login).Folowers.Add(Converter_BLL_DTO.ToUser(user, ctx));
+            ctx.SaveChanges();
+        }
         public void Add_User(string _firstname, string _lastname, string _login, string _email, string _phone, string _pass, string _city, string _country)
         {
             ctx.Users.Add(new User()

@@ -87,7 +87,12 @@ namespace WpfMaps
 
         private void listViewItem1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Main_Frame.Content = new Search_Page();
+            Main_Frame.Content = new Search_Page(this);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Main_Frame.Content = new Home_Page();
         }
     }
 }

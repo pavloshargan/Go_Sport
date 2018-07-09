@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d" xmlns:system="clr-namespace:System;assembly=mscorlib" 
-        Height="603" Width="1032" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
+        Height="603" Width="1032" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Loaded="Window_Loaded">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMain">
@@ -234,7 +234,7 @@
                         
                     </Grid>
 
-                    <Frame Name="frmMain_win" Height="332" Width="230" Margin="10,0"></Frame>
+                    <Frame NavigationUIVisibility="Hidden" Name="frmMain_win" Height="332" Width="230" Margin="10,0"></Frame>
                 </StackPanel>
             </Grid>
             <!--карта-->

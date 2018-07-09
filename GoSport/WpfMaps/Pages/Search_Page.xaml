@@ -66,7 +66,7 @@
 
 
 
-        <ListView Name="Add_Users_ListView"
+        <ListView Name="Add_Users_ListView" SelectionChanged="Add_Users_ListView_SelectionChanged"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10" Grid.RowSpan="8" Grid.ColumnSpan="4" Grid.Row="2"
                           >
             <ListView.ItemsPanel>
@@ -80,9 +80,10 @@
                     <Grid>
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="220"/>
+                           
                         </Grid.ColumnDefinitions>
                         
                         <Ellipse Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Stroke="White" Margin="0,0,35,0">
@@ -90,25 +91,22 @@
                                 <ImageBrush ImageSource="https://hdanimalspot.com//storage/upload/human/human-58." Stretch="UniformToFill"/>
                             </Ellipse.Fill>
                         </Ellipse>
-                        
-                        <Label Name="lbl_FullName" Grid.Column="1" Content="{Binding Path=FirstName}"
-                   Margin="0,20" FontSize="25" HorizontalContentAlignment="Center" VerticalAlignment="Center"></Label>
+
+                        <Label Name="lbl_FullName" Grid.Column="1" Content="{Binding Path=FullName}"
+                   Margin="0,20" FontSize="25" HorizontalContentAlignment="Left"  VerticalAlignment="Center"></Label>
                         <Label  Grid.Column="2"
                      FontSize="18" Margin="0,0,0,61"  >Followers</Label>
 
                         <Label Content="{Binding Path=Followers.Count}" Name="lbl_Followers" Grid.Column="2"
                    Margin="0,46,0,13" FontSize="25" HorizontalContentAlignment="Center" VerticalAlignment="Center"></Label>
-
+                        
                     </Grid>
-
-
-
 
                 </DataTemplate>
             </ListBox.ItemTemplate>
 
 
         </ListView>
-
+        
     </Grid>
 </Page>

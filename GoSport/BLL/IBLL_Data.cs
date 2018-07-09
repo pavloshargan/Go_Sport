@@ -25,7 +25,8 @@ namespace BLL
         void CreateActivity(Activity_BLL_DTO activity);
         Token_BLL_DTO GetTokenByKey(string key);
         List<User_BLL_DTO> GetUsers();
-
+        List<UserInfo_BLL_DTO> GetUserInfo();
+        void Subscibe(User_BLL_DTO user,Token_BLL_DTO token);
 
     }
 }

@@ -115,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\UserInfo_Subscribe_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window\ConfirmEmail_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +166,9 @@
     </Compile>
     <Compile Include="Pages\UserInfo_Page.xaml.cs">
       <DependentUpon>UserInfo_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserInfo_Subscribe_Page.xaml.cs">
+      <DependentUpon>UserInfo_Subscribe_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window\ConfirmEmail_Window.xaml.cs">
       <DependentUpon>ConfirmEmail_Window.xaml</DependentUpon>
